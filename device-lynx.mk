@@ -81,16 +81,8 @@ DEVICE_MANIFEST_FILE += \
 PRODUCT_COPY_FILES += \
 	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
-# Bluetooth HAL
-DEVICE_MANIFEST_FILE += \
-	device/google/lynx/bluetooth/manifest_bluetooth.xml
-PRODUCT_SOONG_NAMESPACES += \
-        vendor/broadcom/bluetooth
-PRODUCT_PACKAGES += \
-	android.hardware.bluetooth@1.1-service.bcmbtlinux \
-	bt_vendor.conf
-PRODUCT_COPY_FILES += \
-	device/google/lynx/bluetooth/bt_vendor_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor_overlay.conf
+# Bluetooth HAL and Pixel extension
+include device/google/lynx/bluetooth/qti_default.mk
 
 # Keymaster HAL
 #LOCAL_KEYMASTER_PRODUCT_PACKAGE ?= android.hardware.keymaster@4.1-service
@@ -121,10 +113,6 @@ PRODUCT_COPY_FILES += \
 # 	ro.hardware.keystore_desede=true \
 # 	ro.hardware.keystore=software \
 # 	ro.hardware.gatekeeper=software
-
-# default BDADDR for EVB only
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.bluetooth.evb_bdaddr="22:22:22:33:44:55"
 
 # Fingerprint HAL
 GOODIX_CONFIG_BUILD_VERSION := g7_trusty
