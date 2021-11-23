@@ -82,6 +82,8 @@ PRODUCT_COPY_FILES += \
 	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
 # Bluetooth HAL
+DEVICE_MANIFEST_FILE += \
+	device/google/lynx/bluetooth/manifest_bluetooth.xml
 PRODUCT_SOONG_NAMESPACES += \
         vendor/broadcom/bluetooth
 PRODUCT_PACKAGES += \
