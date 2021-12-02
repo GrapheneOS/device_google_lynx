@@ -138,3 +138,6 @@ endif
 # Vibrator HAL
 PRODUCT_VENDOR_PROPERTIES += \
 	ro.vendor.vibrator.hal.long.frequency.shift=15
+
+# Trusty liboemcrypto.so
+PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
