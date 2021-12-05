@@ -37,3 +37,7 @@ on property:vendor.mfgapi.touchpanel.permission=1
 on post-fs-data
     chown system system /dev/goodix_fp
     exec_background - system shell -- /vendor/bin/trusty_apploader /vendor/firmware/g7.app
+
+# Wifi
+on property:sys.boot_completed=1
+    write /sys/bus/platform/drivers/cnss2/qcom,cnss-qca6490/fs_ready 1
