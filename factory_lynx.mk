@@ -32,3 +32,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Factory binaries of camera
 PRODUCT_PACKAGES += fatp_c10p10_wide_hat_tool
+
+# Factory binaries of wifi
+PRODUCT_PACKAGES += myftm
