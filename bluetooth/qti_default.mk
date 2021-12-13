@@ -18,6 +18,8 @@
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
 
+BOARD_SEPOLICY_DIRS += device/google/lynx-sepolicy/bluetooth
+
 BOARD_HAVE_BLUETOOTH_QCOM = true
 BOARD_USES_COMMON_BLUETOOTH_HAL = true
 QCOM_BLUETOOTH_USING_DIAG = false
@@ -42,4 +44,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vendor.bt.bdaddr_path=/proc/device-tree/chosen/config/bt_addr \
 	ro.vendor.bluetooth.emb_wp_mode=false \
 	ro.vendor.bluetooth.wipower=false
-

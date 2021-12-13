@@ -25,7 +25,6 @@ $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/lynx/de
 include device/google/gs201/device-shipping-common.mk
 include device/google/lynx/audio/lynx/audio-tables.mk
 include hardware/google/pixel/vibrator/cs40l26/device.mk
-include device/google/gs101/bluetooth/bluetooth.mk
 
 SOONG_CONFIG_lyric_tuning_product := cloudripper
 SOONG_CONFIG_google3a_config_target_device := cloudripper
