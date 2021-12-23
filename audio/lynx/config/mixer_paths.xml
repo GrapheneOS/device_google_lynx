@@ -69,8 +69,8 @@
     <ctl name="R DRE DRE Switch" value="1"/>
 
     <!-- Cirrus Booster Amp Output Gain -->
-    <ctl name="AMP PCM Gain" value="17"/>
-    <ctl name="R AMP PCM Gain" value="17"/>
+    <ctl name="AMP PCM Gain" value="10"/>
+    <ctl name="R AMP PCM Gain" value="10"/>
     <ctl name="Digital PCM Volume" value="817"/>
     <ctl name="R Digital PCM Volume" value="817"/>
 
