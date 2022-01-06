@@ -44,3 +44,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vendor.bt.bdaddr_path=/proc/device-tree/chosen/config/bt_addr \
 	ro.vendor.bluetooth.emb_wp_mode=false \
 	ro.vendor.bluetooth.wipower=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bluetooth.a2dp_offload.supported=true \
+    persist.bluetooth.a2dp_offload.disabled=false \
+    persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
