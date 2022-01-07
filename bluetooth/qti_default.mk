@@ -23,14 +23,19 @@ BOARD_SEPOLICY_DIRS += device/google/lynx-sepolicy/bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM = true
 BOARD_USES_COMMON_BLUETOOTH_HAL = true
 QCOM_BLUETOOTH_USING_DIAG = false
+TARGET_BLUETOOTH_HCI_V1_1 = true
 TARGET_BLUETOOTH_UART_DEVICE = "/dev/ttySAC18"
 UART_USE_TERMIOS_AFC = true
 TARGET_USE_QTI_BT_OBS = true
 TARGET_USE_QTI_BT_SAR = true
 TARGET_USE_QTI_BT_CHANNEL_AVOIDANCE = true
+ifeq ($(TARGET_BLUETOOTH_HCI_V1_1),true)
+   PRODUCT_PACKAGES += android.hardware.bluetooth@1.1-impl-qti
+else
+   PRODUCT_PACKAGES += android.hardware.bluetooth@1.0-impl-qti
+endif
 PRODUCT_PACKAGES += \
 	android.hardware.bluetooth@1.0-service-qti \
-	android.hardware.bluetooth@1.0-impl-qti \
 	hardware.google.bluetooth.sar@1.0-impl \
 	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl
 
