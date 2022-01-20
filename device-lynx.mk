@@ -128,3 +128,13 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Trusty liboemcrypto.so
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
+
+# GPS xml
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+        PRODUCT_COPY_FILES += \
+                device/google/lynx/gps.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+else
+        PRODUCT_COPY_FILES += \
+                device/google/lynx/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+endif
+
