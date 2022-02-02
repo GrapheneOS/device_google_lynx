@@ -138,3 +138,6 @@ else
                 device/google/lynx/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
 endif
 
+# DCK properties based on target
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.gms.dck.eligible_wcc=2
