@@ -17,8 +17,6 @@
     <ctl name="MIC3" value="0" />
     <ctl name="AoC Speaker Mixer ASP Mode" value="ASP_ON" />
 
-    <ctl name="TDM_0_RX Sample Rate" value="SR_48K" />
-    <ctl name="TDM_0_TX Sample Rate" value="SR_48K" />
     <ctl name="TDM_0_RX Mixer US" value="0" />
     <ctl name="US Record Enable" value="0" />
 
@@ -111,7 +109,7 @@
     </path>
 
     <path name="mic2-only">
-        <ctl name="BUILDIN MIC ID CAPTURE LIST" id="0" value="3" />
+        <ctl name="BUILDIN MIC ID CAPTURE LIST" id="0" value="2" />
         <ctl name="BUILDIN MIC ID CAPTURE LIST" id="1" value="-1" />
         <ctl name="BUILDIN MIC ID CAPTURE LIST" id="2" value="-1" />
         <ctl name="BUILDIN MIC ID CAPTURE LIST" id="3" value="-1" />
@@ -273,6 +271,13 @@
         <ctl name="USB Playback BW v2" value="16" />
         <ctl name="USB Config To AoC v2" value="1" />
         <ctl name="USB_RX Mixer EP3" value="1" />
+    </path>
+
+    <path name="mfg-record usb-headset-mic">
+        <ctl name="Audio Capture Mic Source" value="USB_MIC"/>
+        <ctl name="USB Capture FORMAT v2" value="1" />
+        <ctl name="USB Config To AoC v2" value="1"/>
+        <ctl name="EP1 TX Mixer USB_TX" value="1"/>
     </path>
 
     <path name="us-mfg-playback speaker">

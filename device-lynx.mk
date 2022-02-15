@@ -25,10 +25,9 @@ $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/lynx/de
 include device/google/gs201/device-shipping-common.mk
 include device/google/lynx/audio/lynx/audio-tables.mk
 include hardware/google/pixel/vibrator/cs40l26/device.mk
-include device/google/gs101/bluetooth/bluetooth.mk
 
-SOONG_CONFIG_lyric_tuning_product := cloudripper
-SOONG_CONFIG_google3a_config_target_device := cloudripper
+$(call soong_config_set,lyric,tuning_product,cloudripper)
+$(call soong_config_set,google3a_config,target_device,cloudripper)
 
 # Init files
 PRODUCT_COPY_FILES += \
@@ -81,16 +80,8 @@ DEVICE_MANIFEST_FILE += \
 PRODUCT_COPY_FILES += \
 	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
-# Bluetooth HAL
-DEVICE_MANIFEST_FILE += \
-	device/google/lynx/bluetooth/manifest_bluetooth.xml
-PRODUCT_SOONG_NAMESPACES += \
-        vendor/broadcom/bluetooth
-PRODUCT_PACKAGES += \
-	android.hardware.bluetooth@1.1-service.bcmbtlinux \
-	bt_vendor.conf
-PRODUCT_COPY_FILES += \
-	device/google/lynx/bluetooth/bt_vendor_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor_overlay.conf
+# Bluetooth HAL and Pixel extension
+include device/google/lynx/bluetooth/qti_default.mk
 
 # Keymaster HAL
 #LOCAL_KEYMASTER_PRODUCT_PACKAGE ?= android.hardware.keymaster@4.1-service
@@ -122,10 +113,6 @@ PRODUCT_COPY_FILES += \
 # 	ro.hardware.keystore=software \
 # 	ro.hardware.gatekeeper=software
 
-# default BDADDR for EVB only
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.bluetooth.evb_bdaddr="22:22:22:33:44:55"
-
 # Fingerprint HAL
 GOODIX_CONFIG_BUILD_VERSION := g7_trusty
 include device/google/gs101/fingerprint/udfps_common.mk
@@ -141,3 +128,16 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Trusty liboemcrypto.so
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
+
+# GPS xml
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+        PRODUCT_COPY_FILES += \
+                device/google/lynx/gps.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+else
+        PRODUCT_COPY_FILES += \
+                device/google/lynx/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+endif
+
+# DCK properties based on target
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.gms.dck.eligible_wcc=2
