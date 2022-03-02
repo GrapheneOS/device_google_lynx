@@ -80,6 +80,10 @@ DEVICE_MANIFEST_FILE += \
 PRODUCT_COPY_FILES += \
 	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
+# Power HAL config
+PRODUCT_COPY_FILES += \
+	device/google/lynx/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+
 # Bluetooth HAL and Pixel extension
 include device/google/lynx/bluetooth/qti_default.mk
 
