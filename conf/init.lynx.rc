@@ -41,3 +41,19 @@ on post-fs-data
 # Wifi
 on property:sys.boot_completed=1
     write /sys/bus/platform/drivers/cnss2/qcom,cnss-qca6490/fs_ready 1
+    # Create directories for wifihal services
+    mkdir /dev/socket/wifihal 0770 wifi wifi
+    chmod 2777 /dev/socket/wifihal
+    # Create directories for Location services
+    mkdir /dev/socket/location 0770 wifi wifi
+    chmod 2777 /dev/socket/location
+    mkdir /dev/socket/location/mq 0770 wifi wifi
+    chmod 2777 /dev/socket/location/mq
+    start vendor.loc_launcher
+
+# Start loc_launcher to launch lowi-server
+service vendor.loc_launcher /system/vendor/bin/loc_launcher
+    class late_start
+    user wifi
+    group wifi
+    disabled
