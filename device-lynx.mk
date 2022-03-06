@@ -149,3 +149,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # WIFI COEX
 PRODUCT_COPY_FILES += \
 	device/google/lynx/wifi/coex_table.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/coex_table.xml
+
+# Set zram size
+PRODUCT_VENDOR_PROPERTIES += \
+	vendor.zram.size=3g
