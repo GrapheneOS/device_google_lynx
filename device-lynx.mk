@@ -22,8 +22,8 @@ $(call inherit-product-if-exists, vendor/google_devices/gs201/prebuilts/device-v
 $(call inherit-product-if-exists, vendor/google_devices/gs201/proprietary/device-vendor.mk)
 $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/lynx/device-vendor-lynx.mk)
 
-include device/google/gs201/device-shipping-common.mk
 include device/google/lynx/audio/lynx/audio-tables.mk
+include device/google/gs201/device-shipping-common.mk
 include hardware/google/pixel/vibrator/cs40l26/device.mk
 
 $(call soong_config_set,lyric,tuning_product,cloudripper)
