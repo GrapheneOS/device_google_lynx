@@ -51,7 +51,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vendor.bluetooth.emb_wp_mode=false \
 	ro.vendor.bluetooth.wipower=false
 
+# Bluetooth A2DP offloading
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bluetooth.a2dp_offload.supported=true \
-    persist.bluetooth.a2dp_offload.disabled=true \
-    persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+	ro.bluetooth.a2dp_offload.supported=true \
+	persist.bluetooth.a2dp_offload.disabled=true \
+	persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.vendor.service.bdroid.soclog=true \
+	persist.vendor.service.bdroid.fwsnoop=true
+else
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.vendor.service.bdroid.soclog=false \
+	persist.vendor.service.bdroid.fwsnoop=false
+endif
