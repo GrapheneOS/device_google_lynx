@@ -176,8 +176,8 @@
         <usecase id="UC_RAW_PLAYBACK" dev1="23" dyn_path="true" dsp_vol="false" mmap="true" period="64" period_num="32"/>
         <!-- for output with AUDIO_OUTPUT_FLAG_PRIMARY|AUDIO_OUTPUT_FLAG_FAST, 4 * 10ms buffer -->
         <usecase id="UC_LOW_LATENCY_PLAYBACK" dev1="1" dyn_path="true" dsp_vol="false" mmap="false" period="10" period_num="4"/>
-        <!-- for output with AUDIO_OUTPUT_FLAG_MMAP_NOIRQ, 80 periods * 48 frames/period(=1ms w/ 48k sample rate) * 4 bytes/frame = 15360 bytes -->
-        <usecase id="UC_MMAP_PLAYBACK" dev1="0" dyn_path="true" dsp_vol="false" mmap="true" period="1" period_num="80"/>
+        <!-- for output with AUDIO_OUTPUT_FLAG_MMAP_NOIRQ, 40 periods * 48 frames/period(=1ms w/ 48k sample rate) * 2ch *4(float) = 15360 bytes -->
+        <usecase id="UC_MMAP_PLAYBACK" dev1="0" dyn_path="true" dsp_vol="false" mmap="true" period="1" period_num="40"/>
         <!-- for output with AUDIO_OUTPUT_FLAG_DEEP_BUFFER, 4 * 20ms buffer -->
         <usecase id="UC_DEEP_BUFFER_PLAYBACK" dev1="5" dyn_path="true" dsp_vol="false" mmap="false" period="20" period_num="4"/>
         <!-- dev1: voice-call downlink dev2: voice-clal uplink -->
@@ -187,12 +187,12 @@
         <!-- dev1: audio dev2: haptic -->
         <usecase id="UC_HAPTIC_AUDIO" dev1="2" dev2="7" period="10" period_num="4"/>
         <!-- for VOIP output, 4 * 10ms buffer -->
-        <usecase id="UC_VOIP_PLAYBACK" dev1="16" dyn_path="true" dsp_vol="true" mmap="false" period="10" period_num="4"/>
+        <usecase id="UC_VOIP_PLAYBACK" dev1="16" dyn_path="true" dsp_vol="true" mmap="false" period="10" period_num="4" pcm_ch="2"/>
         <!-- for input -->
         <usecase id="UC_AUDIO_RECORD" dev1="8" dyn_path="true" dsp_vol="false" mmap="false" period="20" period_num="4"/>
         <usecase id="UC_HOSTLESS_UL" dev1="15"/>
         <!-- for VOIP input, 4 * 10ms buffer -->
-        <usecase id="UC_VOIP_RECORD" dev1="17" dyn_path="true" dsp_vol="false" mmap="false" period="10" period_num="4"/>
+        <usecase id="UC_VOIP_RECORD" dev1="17" dyn_path="true" dsp_vol="false" mmap="false" period="20" period_num="2"/>
         <!-- for input wit AUDIO_INPUT_FLAG_FAST  480 periods * 1ms buffer, 16-bit, 2ch, buffer size 92160 bytes-->
         <usecase id="UC_LOW_LATENCY_AUDIO_RECORD" dev1="10" dyn_path="true" dsp_vol="false" mmap="true" period="1" period_num="480"/>
         <!-- for input wit AUDIO_INPUT_FLAG_MMAP_NOIRQ 240 periods * 1ms buffer, 32-bit,2 ch, buffer size 92160 bytes -->
@@ -247,6 +247,8 @@
         <cfg id="IN_USB_TTY_VCO_MIC_BE_CFG" be_path="NULL" codec_path="voice-speaker-mic"/>
         <cfg id="IN_USB_TTY_HCO_MIC_BE_CFG" be_path="usb-headset-mic" codec_path="usb-headset-mic" mux="HW_MUX_GP_0"/>
         <cfg id="IN_SPK_VI_BE_CFG" codec_path="NULL" be_path="spk-vi"/>
+        <cfg id="IN_HANDSET_MIC_BE_CFG" tuning_id="62"/>
+        <cfg id="IN_HANDSET_DUAL_MIC_BE_CFG" tuning_id="63"/>
         <cfg id="IN_CAMCORDER_LANDSCAPE_BE_CFG" tuning_id="70"/>
         <cfg id="IN_CAMCORDER_INVERT_LANDSCAPE_BE_CFG" tuning_id="71"/>
         <cfg id="IN_CAMCORDER_PORTRAIT_BE_CFG" tuning_id="72"/>
@@ -281,9 +283,9 @@
     </device_handle>
 
     <external_module>
-        <module libname="audio_spk_35l41.so"/>
-        <!--module libname="audio_waves_aoc.so" argu="Sink=SPK:1"/-->
-        <!--module libname="audio_fortemedia_aoc.so"/-->
+        <module libname="audio_spk_35l41.so" argu="AcousticShockProtection"/>
+        <module libname="audio_waves_aoc.so" argu="Sink=SPK:1"/>
+        <module libname="audio_fortemedia_aoc.so" argu="DL_CH=y VoIP_DLCHs=SPK:1,USB:1 VoIP_Rate=32000"/>
         <module libname="liboffloadeffect.so"/>
         <module libname="audio_amcs_ext.so"/>
         <module libname="audio_bluenote_aoc.so"/>
