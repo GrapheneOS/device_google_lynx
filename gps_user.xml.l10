@@ -48,8 +48,6 @@
        CpLppGuardTimeSec="1"
        IgnoreInjectedSystemTime="true"
 
-       AttributionAppPkgName="com.google.android.carrierlocation"
-
        AssertEnabled="false"
        CpLppeCancelDbhOnAgnssProvideLoc="true"
        CpLppeUseAgnssLocForEmptyDbh="true"
