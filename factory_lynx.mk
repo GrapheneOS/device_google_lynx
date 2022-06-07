@@ -34,5 +34,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += fatp_imx787_hat_tool
 
 # Factory binaries of wifi
-PRODUCT_PACKAGES += myftm
 PRODUCT_PACKAGES += athdiag
