@@ -57,8 +57,3 @@ service vendor.loc_launcher /system/vendor/bin/loc_launcher
     user wifi
     group wifi
     disabled
-
-
-# Thermal
-on late-init
-    setprop persist.vendor.disable.thermal.control 1
