@@ -183,3 +183,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.vendor.camera.extended_launch_boost=1 \
 	persist.vendor.camera.raise_buf_allocation_priority=1
+
+# Bluetooth LE Audio
+PRODUCT_PRODUCT_PROPERTIES += \
+	ro.bluetooth.leaudio_switcher.supported=true
+
