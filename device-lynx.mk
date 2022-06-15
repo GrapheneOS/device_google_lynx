@@ -186,5 +186,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth LE Audio
 PRODUCT_PRODUCT_PROPERTIES += \
-	ro.bluetooth.leaudio_switcher.supported=true
-
+	ro.bluetooth.leaudio_switcher.supported=true \
+	bluetooth.profile.bap.broadcast.source.enabled=true \
+	bluetooth.profile.bap.broadcast.assist.enabled=true \
+	bluetooth.profile.bap.unicast.client.enabled=true \
+	bluetooth.profile.csip.set_coordinator.enabled=true \
+	bluetooth.profile.hap.client.enabled=true \
+	bluetooth.profile.mcp.server.enabled=true \
+	bluetooth.profile.ccp.server.enabled=true \
+	bluetooth.profile.vcp.controller.enabled=true
