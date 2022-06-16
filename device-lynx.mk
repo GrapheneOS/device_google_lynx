@@ -188,6 +188,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning=true
 
+# Limit camera 1080P 60FPS binning mode to not rear main camera
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
+
 # Bluetooth LE Audio
 PRODUCT_PRODUCT_PROPERTIES += \
 	ro.bluetooth.leaudio_switcher.supported=true \
