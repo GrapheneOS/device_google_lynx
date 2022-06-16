@@ -28,23 +28,31 @@ TARGET_BLUETOOTH_UART_DEVICE = "/dev/ttySAC18"
 UART_USE_TERMIOS_AFC = true
 TARGET_USE_QTI_BT_IBS = false
 TARGET_USE_QTI_BT_OBS = false
-TARGET_USE_QTI_BT_SAR = true
+TARGET_USE_QTI_BT_SAR_V1_1 = true
 TARGET_USE_QTI_BT_CHANNEL_AVOIDANCE = true
+
+# IBluetoothHci @1.1 / @1.0
 ifeq ($(TARGET_BLUETOOTH_HCI_V1_1),true)
    PRODUCT_PACKAGES += android.hardware.bluetooth@1.1-impl-qti
 else
    PRODUCT_PACKAGES += android.hardware.bluetooth@1.0-impl-qti
 endif
+# IBluetoothSar @1.1 / @1.0
+ifeq ($(TARGET_USE_QTI_BT_SAR_V1_1),true)
+   PRODUCT_PACKAGES += hardware.google.bluetooth.sar@1.1-impl
+else ifeq ($(TARGET_USE_QTI_BT_SAR),true)
+   PRODUCT_PACKAGES += hardware.google.bluetooth.sar@1.0-impl
+endif
 PRODUCT_PACKAGES += \
 	android.hardware.bluetooth@1.0-service-qti \
-	hardware.google.bluetooth.sar@1.0-impl \
 	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl
 
 # Bluetooth SAR test tools
-PRODUCT_PACKAGES_DEBUG += \
-	bluetooth_sar_test
+ifeq ($(TARGET_USE_QTI_BT_SAR_V1_1)$(TARGET_USE_QTI_BT_SAR),true)
+   PRODUCT_PACKAGES_DEBUG += bluetooth_sar_test
+endif
 
-# Bluetooth SoC, BDA in device tree, and WiPower
+# Bluetooth (Vendor) SoC, BDA in device tree, and WiPower
 PRODUCT_PROPERTY_OVERRIDES += \
 	vendor.qcom.bluetooth.soc=hastings \
 	ro.vendor.bt.bdaddr_path=/proc/device-tree/chosen/config/bt_addr \
