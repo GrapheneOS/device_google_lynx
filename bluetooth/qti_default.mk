@@ -14,6 +14,13 @@
 # limitations under the License.
 #
 
+# Bluetooth Services sysprop for A2DP AAC VBR and A2DP offloading
+PRODUCT_PRODUCT_PROPERTIES += \
+	persist.bluetooth.a2dp_aac.vbr_supported=true \
+	ro.bluetooth.a2dp_offload.supported=true \
+	persist.bluetooth.a2dp_offload.disabled=true \
+	persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
@@ -58,12 +65,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vendor.bt.bdaddr_path=/proc/device-tree/chosen/config/bt_addr \
 	ro.vendor.bluetooth.emb_wp_mode=false \
 	ro.vendor.bluetooth.wipower=false
-
-# Bluetooth A2DP offloading
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.bluetooth.a2dp_offload.supported=true \
-	persist.bluetooth.a2dp_offload.disabled=true \
-	persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PROPERTY_OVERRIDES += \
