@@ -35,3 +35,6 @@ PRODUCT_PACKAGES += fatp_imx787_hat_tool
 
 # Factory binaries of wifi
 PRODUCT_PACKAGES += athdiag
+PRODUCT_PACKAGES += libdiag
+PRODUCT_PACKAGES += libtime_genoff
+PRODUCT_PACKAGES += cnss_diag
