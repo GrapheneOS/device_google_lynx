@@ -28,8 +28,8 @@ include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
 include hardware/google/pixel/vibrator/cs40l26/device.mk
 
-$(call soong_config_set,lyric,tuning_product,cloudripper)
-$(call soong_config_set,google3a_config,target_device,cloudripper)
+$(call soong_config_set,lyric,tuning_product,lynx)
+$(call soong_config_set,google3a_config,target_device,lynx)
 
 # Init files
 PRODUCT_COPY_FILES += \
