@@ -29,6 +29,10 @@ on boot && property:ro.build.flavor=factory_lynx-userdebug
     # Audio test folder
     mkdir /data/AudioTest 0775 system system
 
+# Start the twoshay touch service
+on late-init && property:vendor.device.modules.ready=1
+    start twoshay
+
 on property:vendor.mfgapi.touchpanel.permission=1
     chmod 0600 /sys/devices/virtual/sec/tsp/cmd
     chown system system /sys/devices/virtual/sec/tsp/cmd
