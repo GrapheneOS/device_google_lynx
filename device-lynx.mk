@@ -50,6 +50,8 @@ PRODUCT_COPY_FILES += \
 # Display Config
 PRODUCT_COPY_FILES += \
         device/google/lynx/lynx/display_colordata_dev_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_dev_cal0.pb
+# Display LBE
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
 
 # NFC
 PRODUCT_COPY_FILES += \
@@ -191,15 +193,3 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Limit camera 1080P 60FPS binning mode to not rear main camera
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
-
-# Bluetooth LE Audio
-PRODUCT_PRODUCT_PROPERTIES += \
-	ro.bluetooth.leaudio_switcher.supported=true \
-	bluetooth.profile.bap.broadcast.source.enabled=true \
-	bluetooth.profile.bap.broadcast.assist.enabled=true \
-	bluetooth.profile.bap.unicast.client.enabled=true \
-	bluetooth.profile.csip.set_coordinator.enabled=true \
-	bluetooth.profile.hap.client.enabled=true \
-	bluetooth.profile.mcp.server.enabled=true \
-	bluetooth.profile.ccp.server.enabled=true \
-	bluetooth.profile.vcp.controller.enabled=true

@@ -18,8 +18,23 @@
 PRODUCT_PRODUCT_PROPERTIES += \
 	persist.bluetooth.a2dp_aac.vbr_supported=true \
 	ro.bluetooth.a2dp_offload.supported=true \
-	persist.bluetooth.a2dp_offload.disabled=true \
+	persist.bluetooth.a2dp_offload.disabled=false \
 	persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+
+# Bluetooth LE Audio
+PRODUCT_PRODUCT_PROPERTIES += \
+	ro.bluetooth.leaudio_switcher.supported=true \
+	bluetooth.profile.bap.broadcast.source.enabled=true \
+	bluetooth.profile.bap.broadcast.assist.enabled=true \
+	bluetooth.profile.bap.unicast.client.enabled=true \
+	bluetooth.profile.csip.set_coordinator.enabled=true \
+	bluetooth.profile.hap.client.enabled=true \
+	bluetooth.profile.mcp.server.enabled=true \
+	bluetooth.profile.ccp.server.enabled=true \
+	bluetooth.profile.vcp.controller.enabled=true \
+	ro.bluetooth.leaudio_offload.supported=true \
+	persist.bluetooth.leaudio_offload.disabled=false \
+	ro.vendor.audio_hal.ble_use_stream_id=true
 
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
