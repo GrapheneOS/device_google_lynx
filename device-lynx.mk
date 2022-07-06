@@ -50,8 +50,9 @@ PRODUCT_COPY_FILES += \
 # Display Config
 PRODUCT_COPY_FILES += \
         device/google/lynx/lynx/display_colordata_dev_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_dev_cal0.pb
-# Display LBE
+# Display
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_idle_timer_ms=1500
 
 # NFC
 PRODUCT_COPY_FILES += \
