@@ -42,7 +42,7 @@
 
     <!-- Default screen brightness setting
          Must be in the range specified by minimum and maximum. -->
-    <item name="config_screenBrightnessSettingDefaultFloat" format="float" type="dimen">0.17429718</item>
+    <item name="config_screenBrightnessSettingDefaultFloat" format="float" type="dimen">0.140280561</item>
 
     <!-- Whether the display cutout region of the main built-in display should be forced to
         black in software (to avoid aliasing or emulate a cutout that is not physically existent).
@@ -244,4 +244,6 @@
         <item>283</item>
     </integer-array>
 
+    <!-- The max vibration strength allowed in audio haptic channels. -->
+    <item name="config_hapticChannelMaxVibrationAmplitude" format="float" type="dimen">0.32</item>
 </resources>
