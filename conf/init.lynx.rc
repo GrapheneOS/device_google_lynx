@@ -30,7 +30,7 @@ on boot && property:ro.build.flavor=factory_lynx-userdebug
     mkdir /data/AudioTest 0775 system system
 
 # Start the twoshay touch service
-on late-init && property:vendor.device.modules.ready=1
+on property:vendor.device.modules.ready=1
     start twoshay
 
 on property:vendor.mfgapi.touchpanel.permission=1
