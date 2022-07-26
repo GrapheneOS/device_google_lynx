@@ -21,5 +21,6 @@ USES_DEVICE_GOOGLE_LYNX := true
 
 include device/google/gs201/BoardConfig-common.mk
 -include vendor/google_devices/gs201/prebuilts/BoardConfigVendor.mk
+-include vendor/google_devices/lynx/proprietary/BoardConfigVendor.mk
 include device/google/lynx-sepolicy/lynx-sepolicy.mk
 include device/google/gs201/wifi/qcom/BoardConfig-wifi.mk
