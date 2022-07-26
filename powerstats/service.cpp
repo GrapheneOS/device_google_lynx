@@ -61,7 +61,7 @@ int main() {
 
     std::shared_ptr<PowerStats> p = ndk::SharedRefBase::make<PowerStats>();
 
-    addGs201CommonDataProviders(p);
+    addGs201CommonDataProvidersQc(p);
     addDisplay(p);
     addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-4/i2c-st21nfc/power_stats");
 
