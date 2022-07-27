@@ -69,6 +69,12 @@ PRODUCT_PACKAGES += \
 	android.hardware.bluetooth@1.0-service-qti \
 	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl
 
+# Bluetooth SAR Tx power caps
+PRODUCT_COPY_FILES += \
+	device/google/lynx/bluetooth/bluetooth_power_limits_L10_EU.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_EU.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_L10_JP.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_JP.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_L10_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_US.csv
+
 # Bluetooth SAR test tools
 ifeq ($(TARGET_USE_QTI_BT_SAR_V1_1)$(TARGET_USE_QTI_BT_SAR),true)
    PRODUCT_PACKAGES_DEBUG += bluetooth_sar_test

@@ -21,6 +21,7 @@ $(call inherit-product-if-exists, vendor/google_devices/lynx/prebuilts/device-ve
 $(call inherit-product-if-exists, vendor/google_devices/gs201/prebuilts/device-vendor.mk)
 $(call inherit-product-if-exists, vendor/google_devices/gs201/proprietary/device-vendor.mk)
 $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/lynx/device-vendor-lynx.mk)
+$(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/device-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/google/lynx/lynx/overlay
 
