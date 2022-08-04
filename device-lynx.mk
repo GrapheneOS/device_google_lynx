@@ -199,3 +199,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Limit camera 1080P 60FPS binning mode to not rear main camera
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
+
+# Device features
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
