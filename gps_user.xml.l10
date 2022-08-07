@@ -54,6 +54,7 @@
        CpLppeUseAgnssLocForEmptyDbh="true"
        ReAidingOnHotStart="false"
        ReAidingIntervalSec="1200"
+       RuntimeSwLteFilterEnable="true"
   />
 
   <gll
@@ -63,7 +64,6 @@
        MultiCarrRFMode="GL_MULTI_CARR_RF_MODE_L1"
        MultiCarrLnaMask="L1_EXT_ON"
        RfType="GL_RF_4776_BRCM"
-       EnableFilteringForLTEB13="true"
 
        WarmStandbyTimeout1Seconds="10"
        WarmStandbyTimeout2Seconds="15"
