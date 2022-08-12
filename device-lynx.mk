@@ -205,6 +205,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
 
+# OIS with system imu
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.ois_with_system_imu=true
+
 # Use GmsCorePrebuilt y2022w28
 USE_GMSCORE_PREBUILT_Y2022W28 := true
 
