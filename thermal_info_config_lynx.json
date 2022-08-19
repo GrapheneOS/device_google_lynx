@@ -193,7 +193,6 @@
         {
             "Name":"VIRTUAL-SKIN-CHARGE",
             "Type":"UNKNOWN",
-            "Hidden":true,
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"MAXIMUM",
@@ -235,7 +234,6 @@
         {
             "Name":"VIRTUAL-SKIN-CHARGE-WLC",
             "Type":"UNKNOWN",
-            "Hidden":true,
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"WEIGHTED_AVG",
