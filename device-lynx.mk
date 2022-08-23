@@ -190,7 +190,7 @@ PRODUCT_PACKAGES += \
 
 # MIPI Coex Configs
 PRODUCT_COPY_FILES += \
-    device/google/$(TARGET_PRODUCT)/$(TARGET_PRODUCT)/radio/$(TARGET_PRODUCT)_display_primary_mipi_coex_table.csv:$(TARGET_COPY_OUT_VENDOR)/etc/modem/display_primary_mipi_coex_table.csv
+    device/google/lynx/lynx/radio/lynx_display_primary_mipi_coex_table.csv:$(TARGET_COPY_OUT_VENDOR)/etc/modem/display_primary_mipi_coex_table.csv
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
