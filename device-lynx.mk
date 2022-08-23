@@ -87,7 +87,8 @@ DEVICE_MANIFEST_FILE += \
 
 # Thermal Config
 PRODUCT_COPY_FILES += \
-	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
+	device/google/lynx/thermal_info_config_charge_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json
 
 # Power HAL config
 PRODUCT_COPY_FILES += \
@@ -186,6 +187,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
     AvoidAppsInCutoutOverlay
+
+# MIPI Coex Configs
+PRODUCT_COPY_FILES += \
+    device/google/lynx/lynx/radio/lynx_display_primary_mipi_coex_table.csv:$(TARGET_COPY_OUT_VENDOR)/etc/modem/display_primary_mipi_coex_table.csv
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
