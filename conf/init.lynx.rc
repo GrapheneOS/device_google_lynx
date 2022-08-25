@@ -52,7 +52,7 @@ on post-fs-data
     chmod 0660  /sys/class/st33spi/st33spi/st33spi_state
 
 # Wifi
-on property:sys.boot_completed=1
+on property:vendor.all.modules.ready=1
     write /sys/bus/platform/drivers/cnss2/qcom,cnss-qca6490/fs_ready 1
     # Create directories for wifihal services
     mkdir /dev/socket/wifihal 0770 wifi wifi
