@@ -39,6 +39,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
+DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/lynx/bluetooth/device_framework_matrix_product.xml
 
 BOARD_SEPOLICY_DIRS += device/google/lynx-sepolicy/bluetooth
 
