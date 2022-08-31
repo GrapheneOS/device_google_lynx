@@ -155,6 +155,9 @@
     <!-- The default peak refresh rate. -->
     <integer name="config_defaultPeakRefreshRate">90</integer>
 
+    <!-- the number of the max cached processes in the system. -->
+    <integer name="config_customizedMaxCachedProcesses">64</integer>
+
     <integer-array name="config_ambientThresholdLevels">
         <item>2</item>
         <item>3</item>
