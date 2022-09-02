@@ -48,6 +48,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/google/lynx/media_profiles_lynx.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
+# Media Performance Class 13
+PRODUCT_PROPERTY_OVERRIDES += ro.odm.build.media_performance_class=33
+
 # Display Config
 PRODUCT_COPY_FILES += \
         device/google/lynx/lynx/display_colordata_dev_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_dev_cal0.pb
@@ -149,10 +152,14 @@ PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
 # GPS xml
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
         PRODUCT_COPY_FILES += \
-                device/google/lynx/gps.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+                device/google/lynx/location/gps.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml \
+                device/google/lynx/location/lhd.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/lhd.conf \
+                device/google/lynx/location/scd.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/scd.conf
 else
         PRODUCT_COPY_FILES += \
-                device/google/lynx/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+                device/google/lynx/location/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml \
+                device/google/lynx/location/lhd_user.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/lhd.conf \
+                device/google/lynx/location/scd_user.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/scd.conf
 endif
 
 # DCK properties based on target
