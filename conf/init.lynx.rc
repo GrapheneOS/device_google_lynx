@@ -15,7 +15,7 @@ on early-boot
     wait_for_prop vendor.common.modules.ready 1
     start insmod_sh_lynx
 
-service insmod_sh_lynx /vendor/bin/init.insmod.sh /vendor/etc/init.insmod.lynx.cfg
+service insmod_sh_lynx /vendor/bin/insmod.sh /vendor/etc/init.insmod.lynx.cfg
     class main
     user root
     group root system
