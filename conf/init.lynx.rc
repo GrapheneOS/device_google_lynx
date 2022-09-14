@@ -54,6 +54,9 @@ on post-fs-data
 # Wifi
 on property:sys.boot_completed=1
     write /sys/bus/platform/drivers/cnss2/qcom,cnss-qca6490/fs_ready 1
+
+on property:vendor.all.modules.ready=1 && property:vendor.all.devices.ready=1
+    write /sys/bus/platform/drivers/cnss2/qcom,cnss-qca6490/fs_ready 1
     # Create directories for wifihal services
     mkdir /dev/socket/wifihal 0770 wifi wifi
     chmod 2777 /dev/socket/wifihal
