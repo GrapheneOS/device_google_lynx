@@ -192,6 +192,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
+# Fingerprint als feed forward
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.udfps.als_feed_forward_supported=true \
+    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
+
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
