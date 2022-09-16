@@ -68,7 +68,9 @@ else ifeq ($(TARGET_USE_QTI_BT_SAR),true)
 endif
 PRODUCT_PACKAGES += \
 	android.hardware.bluetooth@1.0-service-qti \
-	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl
+	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl \
+	android.hardware.bluetooth.prebuilt.xml \
+	android.hardware.bluetooth_le.prebuilt.xml
 
 # Bluetooth SAR Tx power caps
 PRODUCT_COPY_FILES += \
