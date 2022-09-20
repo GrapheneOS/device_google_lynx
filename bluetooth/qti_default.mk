@@ -36,6 +36,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 	persist.bluetooth.leaudio_offload.disabled=false \
 	ro.vendor.audio_hal.ble_use_stream_id=true
 
+# LE Auido Offload Capabilities setting
+PRODUCT_COPY_FILES += \
+	device/google/lynx/bluetooth/lynx/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
+
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
