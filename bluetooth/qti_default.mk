@@ -80,7 +80,7 @@ PRODUCT_COPY_FILES += \
 	device/google/lynx/bluetooth/bluetooth_power_limits_L10_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_US.csv
 
 # Bluetooth SAR test tools
-ifeq ($(TARGET_USE_QTI_BT_SAR_V1_1)$(TARGET_USE_QTI_BT_SAR),true)
+ifneq (,$(filter true, $(TARGET_USE_QTI_BT_SAR_V1_1) $(TARGET_USE_QTI_BT_SAR)))
    PRODUCT_PACKAGES_DEBUG += bluetooth_sar_test
 endif
 
