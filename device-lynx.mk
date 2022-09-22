@@ -101,7 +101,9 @@ PRODUCT_COPY_FILES += \
 	device/google/lynx/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # PowerStats HAL
-PRODUCT_SOONG_NAMESPACES += device/google/lynx/powerstats
+PRODUCT_SOONG_NAMESPACES += \
+    device/google/lynx/powerstats \
+    device/google/lynx
 
 # Bluetooth HAL and Pixel extension
 include device/google/lynx/bluetooth/qti_default.mk
@@ -246,3 +248,7 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     PRODUCT_COPY_FILES += \
         device/google/gs201/init.hardware.wlc.rc.userdebug:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.wlc.rc
 endif
+
+# SKU specific RROs
+PRODUCT_PACKAGES += \
+    SettingsOverlayG82U8
