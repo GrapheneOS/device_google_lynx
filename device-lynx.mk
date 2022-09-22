@@ -224,6 +224,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
 
+# Increase thread priority for nodes stop
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.increase_thread_priority_nodes_stop=true
+
 # OIS with system imu
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.ois_with_system_imu=true
