@@ -103,7 +103,9 @@ PRODUCT_COPY_FILES += \
 	device/google/lynx/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # PowerStats HAL
-PRODUCT_SOONG_NAMESPACES += device/google/lynx/powerstats
+PRODUCT_SOONG_NAMESPACES += \
+    device/google/lynx/powerstats \
+    device/google/lynx
 
 # Bluetooth HAL and Pixel extension
 include device/google/lynx/bluetooth/qti_default.mk
@@ -224,6 +226,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
 
+# Increase thread priority for nodes stop
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.increase_thread_priority_nodes_stop=true
+
 # OIS with system imu
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.ois_with_system_imu=true
@@ -241,3 +247,7 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     PRODUCT_COPY_FILES += \
         device/google/gs201/init.hardware.wlc.rc.userdebug:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.wlc.rc
 endif
+
+# SKU specific RROs
+PRODUCT_PACKAGES += \
+    SettingsOverlayG82U8
