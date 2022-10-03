@@ -36,6 +36,16 @@ PRODUCT_PRODUCT_PROPERTIES += \
 	persist.bluetooth.leaudio_offload.disabled=false \
 	ro.vendor.audio_hal.ble_use_stream_id=true
 
+# Bluetooth LE Audio CIS handover to SCO
+# Set the property only if the controller doesn't support CIS and SCO
+# simultaneously. More details in b/242908683.
+PRODUCT_PRODUCT_PROPERTIES += \
+	persist.bluetooth.leaudio.notify.idle.during.call=true
+
+# LE Auido Offload Capabilities setting
+PRODUCT_COPY_FILES += \
+	device/google/lynx/bluetooth/lynx/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
+
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
@@ -49,7 +59,7 @@ TARGET_BLUETOOTH_HCI_V1_1 = true
 TARGET_BLUETOOTH_UART_DEVICE = "/dev/ttySAC18"
 UART_USE_TERMIOS_AFC = true
 TARGET_USE_QTI_BT_IBS = false
-TARGET_USE_QTI_BT_OBS = false
+TARGET_USE_QTI_BT_OBS = true
 TARGET_USE_QTI_BT_SAR_V1_1 = true
 TARGET_USE_QTI_BT_CHANNEL_AVOIDANCE = true
 
@@ -76,7 +86,7 @@ PRODUCT_COPY_FILES += \
 	device/google/lynx/bluetooth/bluetooth_power_limits_L10_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_US.csv
 
 # Bluetooth SAR test tools
-ifeq ($(TARGET_USE_QTI_BT_SAR_V1_1)$(TARGET_USE_QTI_BT_SAR),true)
+ifneq (,$(filter true, $(TARGET_USE_QTI_BT_SAR_V1_1) $(TARGET_USE_QTI_BT_SAR)))
    PRODUCT_PACKAGES_DEBUG += bluetooth_sar_test
 endif
 
