@@ -66,6 +66,24 @@
         @left
     </string>
 
+    <!-- Not allow to switch to higher refresh rate when display brightness setting is
+         equal or less than this value -->
+    <integer-array name="config_brightnessThresholdsOfPeakRefreshRate">
+        <!-- System brightness for 10 nits: round((10-2)/(1000-2)*(255-1)+1) = 3 -->
+        <item>3</item> <!-- 20% UI brightness -->
+        <!-- System brightness for 15 nits: round((15-2)/(1000-2)*(255-1)+1) = 4 -->
+        <item>4</item> <!-- 24% UI brightness -->
+    </integer-array>
+    <integer-array name="config_ambientThresholdsOfPeakRefreshRate">
+        <item>-1</item>
+        <item>5</item>
+    </integer-array>
+    <!-- default refresh rate in the zone defined by birghtness and ambient thresholds -->
+    <integer name="config_defaultRefreshRateInZone">90</integer>
+
+    <!-- Default refresh rate while the device has high brightness mode enabled for HDR. -->
+    <integer name="config_defaultRefreshRateInHbmHdr">60</integer>
+
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
       The N entries of this array define N  1 zones as follows:
          Zone 0:        0 <= LUX < array[0]
