@@ -97,6 +97,9 @@ on property:vendor.device.modules.ready=1
 on property:sys.boot_completed=1
     trigger override-sf-uclamp
 
+on property:vendor.powerhal.init=*
+    write /dev/cpuset/background/cpus ${persist.device_config.vendor_system_native.background_cpuset:-0-3}
+
 on override-sf-uclamp
     write /proc/vendor_sched/rt_uclamp_min 0
     write /proc/vendor_sched/sf_uclamp_min 0
