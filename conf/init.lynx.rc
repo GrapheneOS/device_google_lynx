@@ -105,12 +105,6 @@ on override-sf-uclamp
     write /proc/vendor_sched/rt_uclamp_min 0
     write /proc/vendor_sched/sf_uclamp_min 0
 
-# For Japan sku, always enforce camera shutter sound
-# Since this property is read by the audio server in system service,
-# it should be written by the system init.
-on property:ro.boot.hardware.sku=G82U8
-    setprop audio.camerasound.force true
-
 # Route vibrator.adaptive_haptics.enabled to persist
 on property:vibrator.adaptive_haptics.enabled=0
     setprop persist.vendor.vibrator.hal.context.enable false
