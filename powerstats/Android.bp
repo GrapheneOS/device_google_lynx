@@ -16,6 +16,7 @@ soong_namespace {
     imports: [
         "hardware/google/pixel",
         "device/google/gs201/powerstats",
+        "device/google/gs-common/powerstats",
     ]
 }
 
@@ -38,5 +39,6 @@ cc_binary {
 
     shared_libs: [
         "android.hardware.power.stats-impl.gs201",
+        "android.hardware.power.stats-impl.gs-common",
     ],
 }
