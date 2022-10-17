@@ -102,14 +102,24 @@
             "Multiplier":0.001
         },
         {
+            "Name":"VIRTUAL-SKIN2-USB2-DISP",
+            "Type":"UNKNOWN",
+            "Hidden":true,
+            "VirtualSensor":true,
+            "Formula":"WEIGHTED_AVG",
+            "Combination":["skin_therm2", "usb_pwr_therm2", "disp_therm"],
+            "Coefficient":[0.42, 0.29, 0.29],
+            "Multiplier":0.001
+        },
+        {
             "Name":"VIRTUAL-SKIN-CHARGE",
             "Type":"UNKNOWN",
             "Hidden":true,
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"MAXIMUM",
-            "Combination":["VIRTUAL-NEU-QUT-DISP-GNSS-BATT", "VIRTUAL-NEU-DISP-SKIN1-GNSS-BATT", "VIRTUAL-SKIN2-USB2-DISP-BATT", "VIRTUAL-QUT-SKIN2-USB2-DISP"],
-            "Coefficient":[1.0, 1.0, 1.0, 1.0],
+            "Combination":["VIRTUAL-NEU-QUT-DISP-GNSS-BATT", "VIRTUAL-NEU-DISP-SKIN1-GNSS-BATT", "VIRTUAL-SKIN2-USB2-DISP-BATT", "VIRTUAL-QUT-SKIN2-USB2-DISP", "VIRTUAL-SKIN2-USB2-DISP"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0, 1.0],
             "HotThreshold":["NAN", 35.0, 39.0, 43.0, 45.0, 47.0, 55.0],
             "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9],
             "Multiplier":0.001,
