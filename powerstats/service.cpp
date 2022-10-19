@@ -18,6 +18,7 @@
 
 #include <dataproviders/DisplayStateResidencyDataProvider.h>
 #include <dataproviders/PowerStatsEnergyConsumer.h>
+#include <DevfreqStateResidencyDataProvider.h>
 #include <Gs201CommonDataProviders.h>
 #include <PowerStatsAidl.h>
 
@@ -28,6 +29,7 @@
 #include <log/log.h>
 #include <sys/stat.h>
 
+using aidl::android::hardware::power::stats::DevfreqStateResidencyDataProvider;
 using aidl::android::hardware::power::stats::DisplayStateResidencyDataProvider;
 using aidl::android::hardware::power::stats::EnergyConsumerType;
 using aidl::android::hardware::power::stats::PowerStatsEnergyConsumer;
@@ -54,6 +56,39 @@ void addDisplay(std::shared_ptr<PowerStats> p) {
              {"On: 1080x2400@90", 3}}));
 }
 
+void addGPUGs202(std::shared_ptr<PowerStats> p) {
+    std::map<std::string, int32_t> stateCoeffs;
+
+    // Add GPU state residency
+    p->addStateResidencyDataProvider(std::make_unique<DevfreqStateResidencyDataProvider>(
+            "GPU",
+            "/sys/devices/platform/28000000.mali"));
+
+    // Add GPU energy consumer
+    stateCoeffs = {
+        {"202000",  890},
+        {"251000", 1102},
+        {"302000", 1308},
+        {"351000", 1522},
+        {"400000", 1772},
+        {"434000", 1931},
+        {"471000", 2105},
+        {"510000", 2292},
+        {"572000", 2528},
+        {"633000", 2811},
+        {"701000", 3127},
+        {"762000", 3452},
+        {"848000", 4044}};
+
+    p->addEnergyConsumer(PowerStatsEnergyConsumer::createMeterAndAttrConsumer(
+            p,
+            EnergyConsumerType::OTHER,
+            "GPU",
+            {"S2S_VDD_G3D", "S8S_VDD_G3D_L2"},
+            {{UID_TIME_IN_STATE, "/sys/devices/platform/28000000.mali/uid_time_in_state"}},
+            stateCoeffs));
+}
+
 int main() {
     struct stat buffer;
 
@@ -64,8 +99,17 @@ int main() {
 
     std::shared_ptr<PowerStats> p = ndk::SharedRefBase::make<PowerStats>();
 
-    addGs201CommonDataProvidersQc(p);
+    setEnergyMeter(p);
+    addAoC(p);
+    addCPUclusters(p);
     addDisplay(p);
+    addSoC(p);
+    addGNSS(p);
+    addMobileRadio(p);
+    addPCIe(p);
+    addWlan(p);
+    addTPU(p);
+    addUfs(p);
     if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-2/i2c-st21nfc/power_stats", &buffer)) {
         addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-2/i2c-st21nfc/power_stats");
     } else if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-3/i2c-st21nfc/power_stats", &buffer)) {
@@ -81,6 +125,10 @@ int main() {
     } else {
         addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-8/i2c-st21nfc/power_stats");
     }
+    addPowerDomains(p);
+    addDevfreq(p);
+    addGPUGs202(p);
+    addDvfsStats(p);
 
     const std::string instance = std::string() + PowerStats::descriptor + "/default";
     binder_status_t status = AServiceManager_addService(p->asBinder().get(), instance.c_str());
