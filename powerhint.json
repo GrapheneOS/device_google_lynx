@@ -708,7 +708,7 @@
       "PowerHint": "CAMERA_SHOT",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 300,
-      "Value": "9999999"
+      "Value": "1826000"
     },
     {
       "PowerHint": "CAMERA_SHOT",
@@ -720,7 +720,7 @@
       "PowerHint": "CAMERA_SHOT",
       "Node": "CPUMidClusterMinFreq",
       "Duration": 300,
-      "Value": "9999999"
+      "Value": "1836000"
     },
     {
       "PowerHint": "CAMERA_BACKEND_BOOST",
