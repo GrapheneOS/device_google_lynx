@@ -18,10 +18,10 @@ package {
 }
 
 cc_defaults {
-    name: "PixelVibratorDefaults",
+    name: "PixelVibratorDefaultsPrivateLynx",
     relative_install_path: "hw",
     static_libs: [
-        "PixelVibratorCommon",
+        "PixelVibratorCommonPrivateLynx",
     ],
     shared_libs: [
         "libbase",
@@ -34,16 +34,16 @@ cc_defaults {
 }
 
 cc_defaults {
-    name: "PixelVibratorBinaryDefaults",
-    defaults: ["PixelVibratorDefaults"],
+    name: "PixelVibratorBinaryDefaultsPrivateLynx",
+    defaults: ["PixelVibratorDefaultsPrivateLynx"],
     shared_libs: [
         "android.hardware.vibrator-V2-ndk",
     ],
 }
 
 cc_defaults {
-    name: "PixelVibratorTestDefaults",
-    defaults: ["PixelVibratorDefaults"],
+    name: "PixelVibratorTestDefaultsPrivateLynx",
+    defaults: ["PixelVibratorDefaultsPrivateLynx"],
     static_libs: [
         "android.hardware.vibrator-V2-ndk",
     ],
