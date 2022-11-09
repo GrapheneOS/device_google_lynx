@@ -5,6 +5,7 @@ on init
     # NFC streset tool name
     setprop persist.vendor.nfc.streset libstreset21
     setprop persist.vendor.se.streset libstreset21
+    setprop dalvik.vm.dexopt.thermal-cutoff 1
 
 # When ro.build.flavor=factory_lynx-userdebug, add vendor/bin/factory to default path
 on init && property:ro.build.flavor=factory_lynx-userdebug
