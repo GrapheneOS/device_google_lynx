@@ -676,6 +676,14 @@
         <ctl name="R Fast Use Case Switch Enable" value="1" />
     </path>
 
+    <path name="speaker-amp1">
+        <ctl name="Main AMP Enable Switch" value="1"/>
+    </path>
+
+    <path name="speaker-amp2">
+        <ctl name="R Main AMP Enable Switch" value="1"/>
+    </path>
+
     <path name="usb-tty-full">
     </path>
 
