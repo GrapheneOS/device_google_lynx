@@ -275,7 +275,7 @@
             "Formula":"MAXIMUM",
             "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
             "Coefficient":[1.0, 1.0, 1.0, 1.0],
-            "HotThreshold":["NAN", 25.0, 39.0, 43.0, 45.0, 47.0, 55.0],
+            "HotThreshold":["NAN", 35.0, 39.0, 43.0, 45.0, 47.0, 55.0],
             "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9],
             "Multiplier":0.001,
             "PollingDelay":300000,
