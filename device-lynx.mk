@@ -229,10 +229,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning=true
 
-# Limit camera 1080P 60FPS binning mode to not rear main camera
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
-
 # Increase thread priority for nodes stop
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.increase_thread_priority_nodes_stop=true
