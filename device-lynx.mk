@@ -229,10 +229,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning=true
 
-# Limit camera 1080P 60FPS binning mode to not rear main camera
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
-
 # Increase thread priority for nodes stop
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.increase_thread_priority_nodes_stop=true
@@ -251,6 +247,11 @@ PRODUCT_COPY_FILES += \
 # Enable adpf cpu hint session for SurfaceFlinger
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     debug.sf.enable_adpf_cpu_hint=true
+
+# The default value of this variable is false and should only be set to true when
+# the device allows users to enable the seamless transfer feature.
+PRODUCT_PRODUCT_PROPERTIES += \
+   euicc.seamless_transfer_enabled_in_non_qs=true
 
 ##Audio Vendor property
 PRODUCT_PROPERTY_OVERRIDES += \
