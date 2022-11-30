@@ -246,6 +246,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     debug.sf.enable_adpf_cpu_hint=true
 
+# The default value of this variable is false and should only be set to true when
+# the device allows users to enable the seamless transfer feature.
+PRODUCT_PRODUCT_PROPERTIES += \
+   euicc.seamless_transfer_enabled_in_non_qs=true
+
 ##Audio Vendor property
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.vendor.audio.cca.enabled=true
