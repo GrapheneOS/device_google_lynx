@@ -28,7 +28,7 @@ DEVICE_PACKAGE_OVERLAYS += device/google/lynx/lynx/overlay
 
 include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
-include device/google/lynx/vibrator/cs40l26/device.mk
+include hardware/google/pixel/vibrator/cs40l26/device.mk
 include device/google/gs-common/touch/gti/gti.mk
 
 # go/lyric-soong-variables

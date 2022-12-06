@@ -110,13 +110,6 @@ on override-sf-uclamp
 on property:ro.boot.hardware.sku=G82U8
     setprop audio.camerasound.force true
 
-# Route vibrator.adaptive_haptics.enabled to persist
-on property:vibrator.adaptive_haptics.enabled=0
-    setprop persist.vendor.vibrator.hal.context.enable false
-
-on property:vibrator.adaptive_haptics.enabled=1
-    setprop persist.vendor.vibrator.hal.context.enable true
-
 # Haptics
 on property:vendor.all.modules.ready=1
     mkdir /mnt/vendor/persist/haptics 0770 system system
