@@ -264,3 +264,8 @@ endif
 # SKU specific RROs
 PRODUCT_PACKAGES += \
     SettingsOverlayG82U8
+
+# Biometrics virtual HAL for e2e testing
+PRODUCT_PACKAGES_DEBUG += \
+    android.hardware.biometrics.fingerprint-service.example
+
