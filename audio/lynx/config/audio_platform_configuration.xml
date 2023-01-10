@@ -35,6 +35,7 @@
         <intf id="BE_VIRTUAL_VOICE_RX_TUNING" block_id="19"/>
         <intf id="BE_VIRTUAL_VOICE_TX_TUNING" block_id="19"/>
         <intf id="BE_HW_TX_INTF_0" block_id="134,128,137"/>
+        <intf id="BE_VIRTUAL_CRYSTAL_CLEAR_AUDIO_TUNING" block_id="138"/>
     </hw_intf>
 
     <product_lists>
@@ -198,8 +199,8 @@
         <!-- for input wit AUDIO_INPUT_FLAG_MMAP_NOIRQ 240 periods * 1ms buffer, 32-bit,2 ch, buffer size 92160 bytes -->
         <usecase id="UC_MMAP_RECORD" dev1="9" dyn_path="true" mmap="true" period="1" period_num="240"/>
         <!-- for hifi -->
-        <usecase id="UC_HIFI_PLAYBACK" dev1="25"/>
-        <usecase id="UC_HIFI_RECORD" dev1="26"/>
+        <usecase id="UC_HIFI_PLAYBACK" dev1="25" period="20" period_num="4"/>
+        <usecase id="UC_HIFI_RECORD" dev1="26" period="20" period_num="4"/>
     </usecase_attr>
 
     <dsp_latency>
@@ -214,26 +215,29 @@
             <be_cfg be_id="OUT_SPEAKER_BE_CFG" latency="70000"/>
             <be_cfg be_id="OUT_USB_HEADSET_BE_CFG" latency="70000"/>
             <be_cfg be_id="OUT_USB_HEADPHONE_BE_CFG" latency="70000"/>
-            <be_cfg be_id="OUT_A2DP_BE_CFG" latency="180000"/>
+            <be_cfg be_id="OUT_A2DP_BE_CFG" latency="100000"/>
         </usecase>
 
         <usecase id="UC_AUDIO_RECORD" type="capture">
-            <be_cfg be_id="IN_CAMCORDER_LANDSCAPE_BE_CFG" latency="160000"/>
-            <be_cfg be_id="IN_CAMCORDER_INVERT_LANDSCAPE_BE_CFG" latency="160000"/>
-            <be_cfg be_id="IN_CAMCORDER_PORTRAIT_BE_CFG" latency="160000"/>
-            <be_cfg be_id="IN_CAMCORDER_SELFIE_LANDSCAPE_BE_CFG" latency="160000"/>
-            <be_cfg be_id="IN_CAMCORDER_SELFIE_INVERT_LANDSCAPE_BE_CFG" latency="160000"/>
-            <be_cfg be_id="IN_CAMCORDER_SELFIE_PORTRAIT_BE_CFG" latency="160000"/>
-            <be_cfg be_id="IN_BTSCO_MIC_BE_CFG" latency="40000"/>
-            <be_cfg be_id="IN_BTSCO_MIC_NREC_BE_CFG" latency="40000"/>
-            <be_cfg be_id="IN_BTSCO_MIC_WB_BE_CFG" latency="40000"/>
-            <be_cfg be_id="IN_BTSCO_MIC_WB_NREC_BE_CFG" latency="40000"/>
+            <be_cfg be_id="IN_CAMCORDER_LANDSCAPE_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_INVERT_LANDSCAPE_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_PORTRAIT_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_SELFIE_LANDSCAPE_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_SELFIE_INVERT_LANDSCAPE_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_SELFIE_PORTRAIT_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_MIC_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_CAMCORDER_TRIPLE_MIC_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_BTSCO_MIC_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_BTSCO_MIC_NREC_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_BTSCO_MIC_WB_BE_CFG" latency="100000"/>
+            <be_cfg be_id="IN_BTSCO_MIC_WB_NREC_BE_CFG" latency="100000"/>
         </usecase>
     </dsp_latency>
 
     <soundcard_name name="google,aoc-snd-card" />
     <features>
         <feature name="BatteryThrottle=Type:BCL_VOLTAGE,Name:BCL_AUDIO_BAACL,Strategy:MediaSpeakerAndScreenOn"/>
+        <feature name="PlaybackThermalThrottle=PollWaitMs:20000,ThermistorName:VIRTUAL-SKIN,ThermistorType:SKIN,ThrottlingSeverity:MODERATE"/>
     </features>
 
     <cfg_attr>
@@ -287,8 +291,9 @@
 
     <external_module>
         <module libname="audio_spk_35l41.so" argu="AcousticShockProtection"/>
-        <module libname="audio_waves_aoc.so" argu="Sink=SPK:1"/>
-        <module libname="audio_fortemedia_aoc.so" argu="DL_CH=y VoIP_DLCHs=SPK:1,USB:1 VoIP_Rate=32000"/>
+        <module libname="audio_waves_aoc.so" argu="Sink=SPK:1 ThermistorsName=VIRTUAL-SKIN"/>
+        <module libname="audio_cca_aoc.so"/>
+        <module libname="audio_fortemedia_aoc.so" argu="DL_CH=y VoIP_DLCHs=SPK:2,USB:2 VoIP_Rate=32000 BOOST_USB_SWB_CLK=y SHARED_MODULE=1130578253"/>
         <module libname="liboffloadeffect.so"/>
         <module libname="audio_amcs_ext.so"/>
         <module libname="audio_bluenote_aoc.so"/>

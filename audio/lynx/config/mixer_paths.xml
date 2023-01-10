@@ -30,6 +30,9 @@
     <ctl name="PCM Stream Wait Time in MSec" value="100"/>
     <ctl name="Voice PCM Stream Wait Time in MSec" value="500"/>
 
+    <!-- Enable it when AOC is ready to trim delay and padding -->
+    <ctl name="Gapless Offload Enable" value="1"/>
+
     <!-- TDM 0 setting -->
     <ctl name="TDM_0_RX Chan" value="Four"/>
     <ctl name="TDM_0_RX Format" value="S32_LE"/>
@@ -671,6 +674,14 @@
         <!-- load Bypass FIR -->
         <ctl name="R Fast Use Case Delta File" value="fast_switch4.txt" />
         <ctl name="R Fast Use Case Switch Enable" value="1" />
+    </path>
+
+    <path name="speaker-amp1">
+        <ctl name="Main AMP Enable Switch" value="1"/>
+    </path>
+
+    <path name="speaker-amp2">
+        <ctl name="R Main AMP Enable Switch" value="1"/>
     </path>
 
     <path name="usb-tty-full">

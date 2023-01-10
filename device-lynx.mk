@@ -22,13 +22,16 @@ $(call inherit-product-if-exists, vendor/google_devices/gs201/prebuilts/device-v
 $(call inherit-product-if-exists, vendor/google_devices/gs201/proprietary/device-vendor.mk)
 $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/lynx/device-vendor-lynx.mk)
 $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/device-vendor.mk)
+$(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/WallpapersLynx.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/google/lynx/lynx/overlay
 
 include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
-include hardware/google/pixel/vibrator/cs40l26/device.mk
+include device/google/lynx/vibrator/cs40l26/device.mk
 
+# go/lyric-soong-variables
+$(call soong_config_set,lyric,camera_hardware,lynx)
 $(call soong_config_set,lyric,tuning_product,lynx)
 $(call soong_config_set,google3a_config,target_device,lynx)
 
@@ -48,6 +51,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/google/lynx/media_profiles_lynx.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
+# Media Performance Class 13
+PRODUCT_PROPERTY_OVERRIDES += ro.odm.build.media_performance_class=33
+
 # Display Config
 PRODUCT_COPY_FILES += \
         device/google/lynx/lynx/display_colordata_dev_cal0.pb:$(TARGET_COPY_OUT_VENDOR)/etc/display_colordata_dev_cal0.pb
@@ -55,6 +61,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_idle_timer_ms=1500
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.ignore_hdr_camera_layers=true
+
+#config of primary display frames to reach LHBM peak brightness
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
 
 # NFC
 PRODUCT_COPY_FILES += \
@@ -87,14 +96,17 @@ DEVICE_MANIFEST_FILE += \
 
 # Thermal Config
 PRODUCT_COPY_FILES += \
-	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+	device/google/lynx/thermal_info_config_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
+	device/google/lynx/thermal_info_config_charge_lynx.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config_charge.json
 
 # Power HAL config
 PRODUCT_COPY_FILES += \
 	device/google/lynx/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # PowerStats HAL
-PRODUCT_SOONG_NAMESPACES += device/google/lynx/powerstats
+PRODUCT_SOONG_NAMESPACES += \
+    device/google/lynx/powerstats \
+    device/google/lynx
 
 # Bluetooth HAL and Pixel extension
 include device/google/lynx/bluetooth/qti_default.mk
@@ -140,7 +152,14 @@ endif
 
 # Vibrator HAL
 PRODUCT_VENDOR_PROPERTIES += \
-	ro.vendor.vibrator.hal.supported_primitives=243
+	ro.vendor.vibrator.hal.supported_primitives=243 \
+	ro.vendor.vibrator.hal.f0.comp.enabled=1 \
+	ro.vendor.vibrator.hal.redc.comp.enabled=0 \
+	persist.vendor.vibrator.hal.context.enable=false \
+	persist.vendor.vibrator.hal.context.scale=40 \
+	persist.vendor.vibrator.hal.context.fade=true \
+	persist.vendor.vibrator.hal.context.cooldowntime=1600 \
+	persist.vendor.vibrator.hal.context.settlingtime=5000
 
 # Trusty liboemcrypto.so
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
@@ -148,10 +167,14 @@ PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
 # GPS xml
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
         PRODUCT_COPY_FILES += \
-                device/google/lynx/gps.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+                device/google/lynx/location/gps.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml \
+                device/google/lynx/location/lhd.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/lhd.conf \
+                device/google/lynx/location/scd.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/scd.conf
 else
         PRODUCT_COPY_FILES += \
-                device/google/lynx/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml
+                device/google/lynx/location/gps_user.xml.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/gps.xml \
+                device/google/lynx/location/lhd_user.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/lhd.conf \
+                device/google/lynx/location/scd_user.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/scd.conf
 endif
 
 # DCK properties based on target
@@ -182,23 +205,64 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
+# Fingerprint als feed forward
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.udfps.als_feed_forward_supported=true \
+    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
+
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
     AvoidAppsInCutoutOverlay
 
+# MIPI Coex Configs
+PRODUCT_COPY_FILES += \
+    device/google/lynx/lynx/radio/lynx_display_primary_mipi_coex_table.csv:$(TARGET_COPY_OUT_VENDOR)/etc/modem/display_primary_mipi_coex_table.csv
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.vendor.camera.extended_launch_boost=1 \
+	persist.vendor.camera.optimized_tnr_freq=1 \
 	persist.vendor.camera.raise_buf_allocation_priority=1
 
 # Enable camera 1080P 60FPS binning mode
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.1080P_60fps_binning=true
 
-# Limit camera 1080P 60FPS binning mode to not rear main camera
+# Increase thread priority for nodes stop
 PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.1080P_60fps_binning_except_rear_main=true
+    persist.vendor.camera.increase_thread_priority_nodes_stop=true
+
+# OIS with system imu
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.ois_with_system_imu=true
 
 # Use GmsCorePrebuilt y2022w28
 USE_GMSCORE_PREBUILT_Y2022W28 := true
+
+# Device features
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
+
+# Enable adpf cpu hint session for SurfaceFlinger
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    debug.sf.enable_adpf_cpu_hint=true
+
+# The default value of this variable is false and should only be set to true when
+# the device allows users to enable the seamless transfer feature.
+PRODUCT_PRODUCT_PROPERTIES += \
+   euicc.seamless_transfer_enabled_in_non_qs=true
+
+##Audio Vendor property
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.vendor.audio.cca.enabled=true
+
+# userdebug specific
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+    PRODUCT_COPY_FILES += \
+        device/google/gs201/init.hardware.wlc.rc.userdebug:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.wlc.rc
+endif
+
+# SKU specific RROs
+PRODUCT_PACKAGES += \
+    SettingsOverlayG82U8

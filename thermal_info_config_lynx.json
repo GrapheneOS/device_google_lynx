@@ -36,11 +36,11 @@
         {
             "Name":"skin_therm1",
             "Type":"UNKNOWN",
-            "HotThreshold":["NAN", 29.9, "NAN", "NAN", "NAN", "NAN", "NAN"],
+            "HotThreshold":["NAN", 27.9, "NAN", "NAN", "NAN", "NAN", "NAN"],
             "HotHysteresis":[0.0, 0.9, 0.0, 0.0, 0.0, 0.0, 0.0],
             "TempPath":"/dev/thermal/tz-by-name/skin_therm1/tz_temp",
             "Multiplier":0.001,
-	    "PollingDelay":60000,
+            "PollingDelay":60000,
             "PassiveDelay":7000
         },
         {
@@ -62,38 +62,61 @@
             "Multiplier":0.001
         },
         {
-            "Name":"VIRTUAL-QUIET-SKIN2-USB2",
+            "Name":"VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1",
             "Type":"UNKNOWN",
             "Hidden":true,
             "VirtualSensor":true,
             "Formula":"WEIGHTED_AVG",
-            "Combination":["quiet_therm", "skin_therm2", "usb_pwr_therm2"],
-            "Coefficient":[0.4, 0.3, 0.3],
+            "Combination":["neutral_therm", "quiet_therm", "skin_therm1", "skin_therm2", "usb_pwr_therm", "usb_pwr_therm2", "gnss_tcxo_therm"],
+            "Coefficient":[0.05, 0.05, 0.7, 0.05, 0.05, 0.05, 0.05],
+            "Offset":-1500,
             "Multiplier":0.001
         },
         {
-            "Name":"VIRTUAL-SKIN2-SKIN1-GNSS-BATT",
+            "Name":"VIRTUAL-QUT-SKIN2-USB-USB2-2",
             "Type":"UNKNOWN",
             "Hidden":true,
             "VirtualSensor":true,
             "Formula":"WEIGHTED_AVG",
-            "Combination":["skin_therm2", "skin_therm1", "gnss_tcxo_therm", "battery"],
-            "Coefficient":[0.2, 0.2, 0.1, 0.5],
+            "Combination":["quiet_therm", "skin_therm2", "usb_pwr_therm", "usb_pwr_therm2"],
+            "Coefficient":[0.15, 0.15, 0.15, 0.55],
+            "Offset":-1000,
+            "Multiplier":0.001
+        },
+        {
+            "Name":"VIRTUAL-QUT-SKIN2-USB-GNSS-3",
+            "Type":"UNKNOWN",
+            "Hidden":true,
+            "VirtualSensor":true,
+            "Formula":"WEIGHTED_AVG",
+            "Combination":["quiet_therm", "skin_therm2", "usb_pwr_therm", "gnss_tcxo_therm"],
+            "Coefficient":[0.166, 0.45, 0.217, 0.167],
+            "Offset":-1950,
+            "Multiplier":0.001
+        },
+        {
+            "Name":"VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4",
+            "Type":"UNKNOWN",
+            "Hidden":true,
+            "VirtualSensor":true,
+            "Formula":"WEIGHTED_AVG",
+            "Combination":["neutral_therm", "quiet_therm", "skin_therm1", "skin_therm2", "usb_pwr_therm", "usb_pwr_therm2", "gnss_tcxo_therm"],
+            "Coefficient":[-0.05, -0.05, 1.3, -0.05, -0.05, -0.05, -0.05],
+            "Offset":-1950,
             "Multiplier":0.001
         },
         {
             "Name":"VIRTUAL-SKIN",
             "Type":"SKIN",
-            "Version":"0.1",
+            "Version":"0.7",
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"MAXIMUM",
-            "Combination":["VIRTUAL-QUIET-SKIN2-USB2", "VIRTUAL-SKIN2-SKIN1-GNSS-BATT"],
-            "Coefficient":[1.0, 1.0],
+            "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0],
             "HotThreshold":["NAN", 39.0, 43.0, 45.0, 47.0, 52.0, 55.0],
             "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9],
             "Multiplier":0.001,
-            "SendPowerHint":true,
             "Monitor":true,
             "PollingDelay":300000,
             "PassiveDelay":7000,
@@ -105,30 +128,51 @@
             ]
         },
         {
-            "Name":"VIRTUAL-SKIN-CPU-GPU",
+            "Name":"VIRTUAL-SKIN-HINT",
             "Type":"UNKNOWN",
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"MAXIMUM",
-            "Combination":["VIRTUAL-QUIET-SKIN2-USB2", "VIRTUAL-SKIN2-SKIN1-GNSS-BATT"],
-            "Coefficient":[1.0, 1.0],
-            "HotThreshold":["NAN", 39.0, 43.0, 45.0, 47.0, 52.0, 55.0],
+            "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0],
+            "HotThreshold":["NAN", 37.0, 43.0, 45.0, 47.0, 52.0, 55.0],
             "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9],
+            "Multiplier":0.001,
+            "SendPowerHint":true,
+            "PollingDelay":300000,
+            "PassiveDelay":7000
+        },
+        {
+            "Name":"VIRTUAL-SKIN-CPU",
+            "Type":"UNKNOWN",
+            "Hidden":true,
+            "VirtualSensor":true,
+            "TriggerSensor":"skin_therm1",
+            "Formula":"MAXIMUM",
+            "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0],
+            "HotThreshold":["NAN", 37.0, 39.0, 41.0, 47.0, 52.0, 55.0],
+            "HotHysteresis":[0.0, 0.9, 0.9, 0.9, 1.9, 1.9, 1.9],
             "Multiplier":0.001,
             "PollingDelay":300000,
             "PassiveDelay":7000,
             "PIDInfo": {
-                "K_Po":["NAN", "NAN", 1800, 500, "NAN", "NAN", "NAN"],
-                "K_Pu":["NAN", "NAN", 1800, 500, "NAN", "NAN", "NAN"],
-                "K_I":["NAN", "NAN", 20, 5, "NAN", "NAN", "NAN"],
-                "K_D":["NAN", "NAN", 0, 0, "NAN", "NAN", "NAN"],
-                "I_Max":["NAN", "NAN", 1500, 100, "NAN", "NAN", "NAN"],
-                "S_Power":["NAN", "NAN", 2500, 1300, "NAN", "NAN", "NAN"],
-                "MinAllocPower":["NAN", "NAN", 2000, 800, "NAN", "NAN", "NAN"],
-                "MaxAllocPower":["NAN", "NAN", 10000, 4000, "NAN", "NAN", "NAN"],
-                "I_Cutoff":["NAN", "NAN", 2, 0, "NAN", "NAN", "NAN"],
-                "E_Integral_Default": 50
+                "K_Po":["NAN", "NAN", "NAN", 400, "NAN", "NAN", "NAN"],
+                "K_Pu":["NAN", "NAN", "NAN", 400, "NAN", "NAN", "NAN"],
+                "K_I":["NAN", "NAN", "NAN", 5, "NAN", "NAN", "NAN"],
+                "K_D":["NAN", "NAN", "NAN", 0, "NAN", "NAN", "NAN"],
+                "I_Max":["NAN", "NAN", "NAN", 300, "NAN", "NAN", "NAN"],
+                "S_Power":["NAN", "NAN", "NAN", 800, "NAN", "NAN", "NAN"],
+                "MinAllocPower":["NAN", "NAN", "NAN", 800, "NAN", "NAN", "NAN"],
+                "MaxAllocPower":["NAN", "NAN", "NAN", 10000, "NAN", "NAN", "NAN"],
+                "I_Cutoff":["NAN", "NAN", "NAN", 2, "NAN", "NAN", "NAN"]
             },
+            "ExcludedPowerInfo": [
+                {
+                    "PowerRail": "VSYS_PWR_MODEM",
+                    "PowerWeight": [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
+                }
+            ],
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "thermal-cpufreq-0",
@@ -136,6 +180,7 @@
                     "MaxReleaseStep": 1,
                     "MaxThrottleStep": 1,
                     "BindedPowerRail": "S4M_VDD_CPUCL0",
+                    "CdevCeiling": [0, 8, 8, 8, 8, 10, 10],
                     "LimitInfo": [0, 0, 0, 0, 8, 10, 10]
                 },
                 {
@@ -144,6 +189,7 @@
                     "MaxReleaseStep": 1,
                     "MaxThrottleStep": 1,
                     "BindedPowerRail": "S3M_VDD_CPUCL1",
+                    "CdevCeiling": [0, 12, 12, 12, 12, 14, 14],
                     "LimitInfo": [0, 0, 0, 0, 12, 14, 14]
                 },
                 {
@@ -152,6 +198,62 @@
                     "MaxReleaseStep": 1,
                     "MaxThrottleStep": 1,
                     "BindedPowerRail": "S2M_VDD_CPUCL2",
+                    "CdevCeiling": [0, 15, 15, 15, 15, 17, 17],
+                    "LimitInfo": [0, 0, 0, 0, 15, 17, 17]
+                }
+            ]
+        },
+        {
+            "Name":"VIRTUAL-SKIN-CPU-GPU",
+            "Type":"UNKNOWN",
+            "Hidden":true,
+            "VirtualSensor":true,
+            "TriggerSensor":"skin_therm1",
+            "Formula":"MAXIMUM",
+            "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0],
+            "HotThreshold":["NAN", 37.0, 43.0, 45.0, 47, 52.0, 55.0],
+            "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.4, 1.9, 1.9],
+            "Multiplier":0.001,
+            "PollingDelay":300000,
+            "PassiveDelay":7000,
+            "PIDInfo": {
+                "K_Po":["NAN", "NAN", "NAN", 300, "NAN", "NAN", "NAN"],
+                "K_Pu":["NAN", "NAN", "NAN", 300, "NAN", "NAN", "NAN"],
+                "K_I":["NAN", "NAN", "NAN", 5, "NAN", "NAN", "NAN"],
+                "K_D":["NAN", "NAN", "NAN", 0, "NAN", "NAN", "NAN"],
+                "I_Max":["NAN", "NAN", "NAN", 700, "NAN", "NAN", "NAN"],
+                "S_Power":["NAN", "NAN", "NAN", 800, "NAN", "NAN", "NAN"],
+                "MinAllocPower":["NAN", "NAN", "NAN", 0, "NAN", "NAN", "NAN"],
+                "MaxAllocPower":["NAN", "NAN", "NAN", 3900, "NAN", "NAN", "NAN"],
+                "I_Cutoff":["NAN", "NAN", "NAN", 2, "NAN", "NAN", "NAN"]
+            },
+            "BindedCdevInfo": [
+                {
+                    "CdevRequest": "thermal-cpufreq-0",
+                    "CdevWeightForPID": [1, 1, 1, 1, 1, 1, 1],
+                    "MaxReleaseStep": 1,
+                    "MaxThrottleStep": 1,
+                    "BindedPowerRail": "S4M_VDD_CPUCL0",
+                    "CdevCeiling": [0, 8, 8, 8, 8, 10, 10],
+                    "LimitInfo": [0, 0, 0, 0, 8, 10, 10]
+                },
+                {
+                    "CdevRequest": "thermal-cpufreq-1",
+                    "CdevWeightForPID": [1, 1, 1, 1, 1, 1, 1],
+                    "MaxReleaseStep": 1,
+                    "MaxThrottleStep": 1,
+                    "BindedPowerRail": "S3M_VDD_CPUCL1",
+                    "CdevCeiling": [0, 12, 12, 12, 12, 14, 14],
+                    "LimitInfo": [0, 0, 0, 0, 12, 14, 14]
+                },
+                {
+                    "CdevRequest": "thermal-cpufreq-2",
+                    "CdevWeightForPID": [1, 1, 1, 1, 1, 1, 1],
+                    "MaxReleaseStep": 1,
+                    "MaxThrottleStep": 1,
+                    "BindedPowerRail": "S2M_VDD_CPUCL2",
+                    "CdevCeiling": [0, 15, 15, 15, 15, 17, 17],
                     "LimitInfo": [0, 0, 0, 0, 15, 17, 17]
                 },
                 {
@@ -160,7 +262,8 @@
                     "MaxReleaseStep": 1,
                     "MaxThrottleStep": 1,
                     "BindedPowerRail": "S2S_VDD_G3D",
-                    "LimitInfo": [0, 0, 0, 0, 10, 11, 11]
+                    "CdevCeiling": [0, 10, 10, 10, 10, 12, 12],
+                    "LimitInfo": [0, 0, 0, 0, 10, 12, 12]
                 }
             ]
         },
@@ -170,32 +273,79 @@
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"MAXIMUM",
-            "Combination":["VIRTUAL-QUIET-SKIN2-USB2", "VIRTUAL-SKIN2-SKIN1-GNSS-BATT"],
-            "Coefficient":[1.0, 1.0],
-            "HotThreshold":["NAN", 39.0, 41.0, 43.0, 45.0, 47.0, 55.0],
+            "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0],
+            "HotThreshold":["NAN", 35.0, 39.0, 43.0, 45.0, 47.0, 55.0],
             "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9],
             "Multiplier":0.001,
-            "Monitor":true,
             "PollingDelay":300000,
             "PassiveDelay":7000,
+            "PIDInfo": {
+                "K_Po":["NAN", "NAN", 700, "NAN", "NAN", "NAN", "NAN"],
+                "K_Pu":["NAN", "NAN", 700, "NAN", "NAN", "NAN", "NAN"],
+                "K_I":["NAN", "NAN", 5, "NAN", "NAN", "NAN", "NAN"],
+                "K_D":["NAN", "NAN", 0, "NAN", "NAN", "NAN", "NAN"],
+                "I_Max":["NAN", "NAN", 800, "NAN", "NAN", "NAN", "NAN"],
+                "S_Power":["NAN", "NAN", 1200, "NAN", "NAN", "NAN", "NAN"],
+                "MinAllocPower":["NAN", "NAN", 300, "NAN", "NAN", "NAN", "NAN"],
+                "MaxAllocPower":["NAN", "NAN", 6000, "NAN", "NAN", "NAN", "NAN"],
+                "I_Cutoff":["NAN", "NAN", 2, "NAN", "NAN", "NAN", "NAN"]
+            },
+            "ExcludedPowerInfo": [
+                {
+                    "PowerRail": "PARTIAL_SYSTEM_POWER",
+                    "PowerWeight": [0.5, 0.5, 0.8, 1.0, 1.0, 1.0, 1.0]
+                }
+            ],
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "fcc",
-                    "LimitInfo": [0, 3, 6, 6, 8, 8, 8],
-                    "BindedPowerRail": "PARTIAL_SYSTEM_POWER",
-                    "PowerThreshold": [500, 500, 500, 500, 0, 0, 0],
-                    "CdevFloorWithPowerLink": [0, 0, 3, 3, 8 ,8 ,8],
-                    "ReleaseLogic": "RELEASE_TO_FLOOR",
-                    "ThrottlingWithPowerLink":true
-                },
+                    "CdevWeightForPID": [1, 1, 1, 1, 1, 1, 1],
+                    "MaxReleaseStep": 1,
+                    "MaxThrottleStep": 1,
+                    "CdevCeiling": [0, 11, 11, 11, 12, 12, 12],
+                    "LimitInfo": [0, 0, 0, 0, 0, 12, 12]
+                }
+            ]
+        },
+        {
+            "Name":"VIRTUAL-SKIN-CHARGE-WLC",
+            "Type":"UNKNOWN",
+            "VirtualSensor":true,
+            "TriggerSensor":"skin_therm1",
+            "Formula":"WEIGHTED_AVG",
+            "Combination":["skin_therm2", "usb_pwr_therm2", "disp_therm"],
+            "Coefficient":[0.51, 0.25, 0.24],
+            "HotThreshold":["NAN", 35.0, 39.0, 43.0, 45.0, 47.0, 55.0],
+            "HotHysteresis":[0.0, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9],
+            "Multiplier":0.001,
+            "PollingDelay":300000,
+            "PassiveDelay":7000,
+            "PIDInfo": {
+                "K_Po":["NAN", "NAN", 800, "NAN", "NAN", "NAN", "NAN"],
+                "K_Pu":["NAN", "NAN", 800, "NAN", "NAN", "NAN", "NAN"],
+                "K_I":["NAN", "NAN", 5, "NAN", "NAN", "NAN", "NAN"],
+                "K_D":["NAN", "NAN", 0, "NAN", "NAN", "NAN", "NAN"],
+                "I_Max":["NAN", "NAN", 800, "NAN", "NAN", "NAN", "NAN"],
+                "S_Power":["NAN", "NAN", 2000, "NAN", "NAN", "NAN", "NAN"],
+                "MinAllocPower":["NAN", "NAN", 300, "NAN", "NAN", "NAN", "NAN"],
+                "MaxAllocPower":["NAN", "NAN", 6000, "NAN", "NAN", "NAN", "NAN"],
+                "I_Cutoff":["NAN", "NAN", 2, "NAN", "NAN", "NAN", "NAN"]
+            },
+            "ExcludedPowerInfo": [
+                {
+                    "PowerRail": "PARTIAL_SYSTEM_POWER",
+                    "PowerWeight": [0.5, 0.5, 0.8, 1.0, 1.0, 1.0, 1.0]
+                }
+            ],
+            "BindedCdevInfo": [
                 {
                     "CdevRequest": "dc_icl",
-                    "LimitInfo": [0, 1, 2, 3, 4, 4, 4],
-                    "BindedPowerRail": "PARTIAL_SYSTEM_POWER",
-                    "PowerThreshold": [500, 500, 500, 500, 0, 0, 0],
-                    "CdevFloorWithPowerLink": [0, 1, 2, 3, 4, 4, 4],
-                    "ReleaseLogic": "RELEASE_TO_FLOOR",
-                    "ThrottlingWithPowerLink":true
+                    "CdevWeightForPID": [1, 1, 1, 1, 1, 1, 1],
+                    "MaxReleaseStep": 1,
+                    "MaxThrottleStep": 1,
+                    "CdevCeiling": [0, 5, 8, 11, 12, 12, 12],
+                    "LimitInfo": [0, 0, 0, 0, 0, 12, 12]
                 }
             ]
         },
@@ -205,12 +355,12 @@
             "VirtualSensor":true,
             "TriggerSensor":"skin_therm1",
             "Formula":"MAXIMUM",
-            "Combination":["VIRTUAL-QUIET-SKIN2-USB2", "VIRTUAL-SKIN2-SKIN1-GNSS-BATT"],
-            "Coefficient":[1.0, 1.0],
+            "Combination":["VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1", "VIRTUAL-QUT-SKIN2-USB-USB2-2", "VIRTUAL-QUT-SKIN2-USB-GNSS-3", "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0],
             "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", 54.0, "NAN"],
             "HotHysteresis":[0.0, 0.0, 0.0, 0.0, 0.0, 1.9, 0.0],
             "Multiplier":0.001,
-            "Monitor":true,
+            "SendCallback":true,
             "PollingDelay":300000,
             "PassiveDelay":7000
         },
@@ -218,10 +368,20 @@
             "Name":"USB-MINUS-SKIN2",
             "Type":"UNKNOWN",
             "VirtualSensor":true,
+            "TriggerSensor": "usb_pwr_therm",
             "Formula":"WEIGHTED_AVG",
             "Combination":["usb_pwr_therm", "skin_therm2"],
             "Coefficient":[1.0, -1.0],
-            "Multiplier":0.001
+            "HotThreshold":["NAN", "7.0", "NAN", "NAN", "NAN", "NAN", "NAN"],
+            "BindedCdevInfo": [
+                {
+                    "CdevRequest": "usbc-port",
+                    "LimitInfo": [0, 0, 0, 0, 0, 0, 0]
+                }
+            ],
+            "Multiplier":0.001,
+            "PollingDelay":0,
+            "PassiveDelay":7000
         },
         {
             "Name":"VIRTUAL-USB-THROTTLING",
@@ -263,31 +423,31 @@
         {
             "Name":"LITTLE",
             "Type":"CPU",
-            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", 115.0],
+            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", "NAN"],
             "Multiplier":0.001
         },
         {
             "Name":"MID",
             "Type":"CPU",
-            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", 115.0],
+            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", "NAN"],
             "Multiplier":0.001
         },
         {
             "Name":"BIG",
             "Type":"CPU",
-            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", 115.0],
+            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", "NAN"],
             "Multiplier":0.001
         },
         {
             "Name":"G3D",
             "Type":"GPU",
-            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", 115.0],
+            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", "NAN"],
             "Multiplier":0.001
         },
         {
             "Name":"TPU",
             "Type":"NPU",
-            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", 115.0],
+            "HotThreshold":["NAN", "NAN", "NAN", "NAN", "NAN", "NAN", "NAN"],
             "Multiplier":0.001
         },
         {
@@ -362,7 +522,7 @@
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "thermal-gpufreq-0",
-                    "LimitInfo": [0, 0, 0, 0, 9, 9, 9]
+                    "LimitInfo": [0, 0, 0, 0, 11, 11, 11]
                 }
             ]
         },
@@ -381,7 +541,7 @@
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "thermal-gpufreq-0",
-                    "LimitInfo": [0, 0, 0, 0, 9, 9, 9]
+                    "LimitInfo": [0, 0, 0, 0, 11, 11, 11]
                 }
             ]
         },
@@ -419,7 +579,7 @@
             "BindedCdevInfo": [
                 {
                     "CdevRequest": "thermal-gpufreq-0",
-                    "LimitInfo": [0, 0, 0, 0, 4, 4, 4]
+                    "LimitInfo": [0, 0, 0, 0, 5, 5, 5]
                 }
             ]
         },
@@ -458,7 +618,7 @@
                 },
                 {
                     "CdevRequest": "thermal-gpufreq-0",
-                    "LimitInfo": [0, 0, 0, 0, 3, 3, 3]
+                    "LimitInfo": [0, 0, 0, 0, 4, 4, 4]
                 },
                 {
                     "CdevRequest": "tpu_cooling",
@@ -512,7 +672,7 @@
                 },
                 {
                     "CdevRequest": "thermal-gpufreq-0",
-                    "LimitInfo": [0, 0, 0, 0, 4, 4, 4]
+                    "LimitInfo": [0, 0, 0, 0, 5, 5, 5]
                 },
                 {
                     "CdevRequest": "tpu_cooling",
@@ -533,7 +693,7 @@
                 },
                 {
                     "CdevRequest": "thermal-gpufreq-0",
-                    "LimitInfo": [0, 0, 0, 0, 3, 3, 3]
+                    "LimitInfo": [0, 0, 0, 0, 4, 4, 4]
                 },
                 {
                     "CdevRequest": "tpu_cooling",
@@ -651,10 +811,15 @@
     ],
     "PowerRails":[
         {
-            "Name":"PPVAR_VSYS_PWR_DISP"
+            "Name":"VSYS_PWR_WLAN_BT"
         },
         {
-            "Name":"VSYS_PWR_MODEM"
+            "Name":"VSYS_PWR_DISPLAY"
+        },
+        {
+            "Name":"VSYS_PWR_MODEM",
+            "PowerSampleDelay":7000,
+            "PowerSampleCount":1
         },
         {
             "Name":"S2M_VDD_CPUCL2",
@@ -687,8 +852,8 @@
             "Name":"PARTIAL_SYSTEM_POWER",
             "VirtualRails":true,
             "Formula":"WEIGHTED_AVG",
-            "Combination":["VSYS_PWR_MODEM", "S2M_VDD_CPUCL2", "S3M_VDD_CPUCL1", "S4M_VDD_CPUCL0", "S5M_VDD_INT", "S1M_VDD_MIF", "S2S_VDD_G3D"],
-            "Coefficient":[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            "Combination":["VSYS_PWR_MODEM", "S2M_VDD_CPUCL2", "S3M_VDD_CPUCL1", "S4M_VDD_CPUCL0", "S5M_VDD_INT", "S1M_VDD_MIF", "S2S_VDD_G3D", "VSYS_PWR_WLAN_BT", "VSYS_PWR_DISPLAY"],
+            "Coefficient":[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
             "PowerSampleDelay":14000,
             "PowerSampleCount":5
         }

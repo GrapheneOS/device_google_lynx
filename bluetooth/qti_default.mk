@@ -24,17 +24,20 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Bluetooth LE Audio
 PRODUCT_PRODUCT_PROPERTIES += \
 	ro.bluetooth.leaudio_switcher.supported=true \
-	bluetooth.profile.bap.broadcast.source.enabled=true \
-	bluetooth.profile.bap.broadcast.assist.enabled=true \
-	bluetooth.profile.bap.unicast.client.enabled=true \
-	bluetooth.profile.csip.set_coordinator.enabled=true \
-	bluetooth.profile.hap.client.enabled=true \
-	bluetooth.profile.mcp.server.enabled=true \
-	bluetooth.profile.ccp.server.enabled=true \
-	bluetooth.profile.vcp.controller.enabled=true \
+	ro.bluetooth.leaudio_broadcast_switcher.supported=true \
 	ro.bluetooth.leaudio_offload.supported=true \
 	persist.bluetooth.leaudio_offload.disabled=false \
-	ro.vendor.audio_hal.ble_use_stream_id=true
+	ro.vendor.audio_hal.ble_use_stream_id=true \
+
+# Bluetooth LE Audio CIS handover to SCO
+# Set the property only if the controller doesn't support CIS and SCO
+# simultaneously. More details in b/242908683.
+PRODUCT_PRODUCT_PROPERTIES += \
+	persist.bluetooth.leaudio.notify.idle.during.call=true
+
+# LE Auido Offload Capabilities setting
+PRODUCT_COPY_FILES += \
+	device/google/lynx/bluetooth/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
 
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
@@ -49,9 +52,10 @@ TARGET_BLUETOOTH_HCI_V1_1 = true
 TARGET_BLUETOOTH_UART_DEVICE = "/dev/ttySAC18"
 UART_USE_TERMIOS_AFC = true
 TARGET_USE_QTI_BT_IBS = false
-TARGET_USE_QTI_BT_OBS = false
+TARGET_USE_QTI_BT_OBS = true
 TARGET_USE_QTI_BT_SAR_V1_1 = true
 TARGET_USE_QTI_BT_CHANNEL_AVOIDANCE = true
+TARGET_DROP_BYTES_BEFORE_SSR_DUMP = true
 
 # IBluetoothHci @1.1 / @1.0
 ifeq ($(TARGET_BLUETOOTH_HCI_V1_1),true)
@@ -71,12 +75,18 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth SAR Tx power caps
 PRODUCT_COPY_FILES += \
-	device/google/lynx/bluetooth/bluetooth_power_limits_L10_EU.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_EU.csv \
-	device/google/lynx/bluetooth/bluetooth_power_limits_L10_JP.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_JP.csv \
-	device/google/lynx/bluetooth/bluetooth_power_limits_L10_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_US.csv
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_G0DZQ_EU.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_G0DZQ_EU.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_GHL1X_EU.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_GHL1X_EU.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_G0DZQ_CA.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_G0DZQ_CA.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_G0DZQ_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_G0DZQ_US.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_GWKK3_CA.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_GWKK3_cA.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_GWKK3_US.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_GWKK3_US.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_G0DZQ_JP.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_G0DZQ_JP.csv \
+	device/google/lynx/bluetooth/bluetooth_power_limits_Lynx_G82U8_JP.csv:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_power_limits_G82U8_JP.csv
 
 # Bluetooth SAR test tools
-ifeq ($(TARGET_USE_QTI_BT_SAR_V1_1)$(TARGET_USE_QTI_BT_SAR),true)
+ifneq (,$(filter true, $(TARGET_USE_QTI_BT_SAR_V1_1) $(TARGET_USE_QTI_BT_SAR)))
    PRODUCT_PACKAGES_DEBUG += bluetooth_sar_test
 endif
 
