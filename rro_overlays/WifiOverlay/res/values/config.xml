@@ -132,4 +132,8 @@
 
     <!-- Indicate the driver doesn't support NL80211 Reg changed event -->
     <bool translatable="false" name="config_wifiDriverSupportedNl80211RegChangedEvent">true</bool>
+
+    <!-- Boolean indicating whether DTIM multiplier configuration is enabled. DTIM multiplier value
+        is when the system is in the suspended mode -->
+    <bool translatable="false" name="config_wifiDtimMultiplierConfigEnabled">true</bool>
 </resources>
