@@ -239,6 +239,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.ois_with_system_imu=true
 
+# Enable camera exif model/make reporting
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.exif_reveal_make_model=true
+
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
