@@ -23,7 +23,6 @@ USES_DEVICE_GOOGLE_LYNX := true
 BOARD_BOOTCONFIG += androidboot.load_modules_parallel=true
 
 # The modules which need to be loaded in sequential
-BOARD_KERNEL_CMDLINE += vh_sched.load_sequential=1
 BOARD_KERNEL_CMDLINE += exynos_drm.load_sequential=1
 
 include device/google/gs201/BoardConfig-common.mk
