@@ -843,13 +843,13 @@
       "PowerHint": "CAMERA_CAPTURE_CPU_THROTTLE",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 1000,
-      "Value": "1426000"
+      "Value": "1826000"
     },
     {
       "PowerHint": "CAMERA_CAPTURE_CPU_THROTTLE",
       "Node": "CPUMidClusterMaxFreq",
       "Duration": 1000,
-      "Value": "1197000"
+      "Value": "1491000"
     },
     {
       "PowerHint": "CAMERA_CAPTURE_CPU_THROTTLE",
