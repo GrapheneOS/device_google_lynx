@@ -74,6 +74,12 @@ service vendor.loc_launcher /system/vendor/bin/loc_launcher
     group wifi
     disabled
 
+# Start cnss-daemon for CHRE
+service vendor.cnss-daemon /vendor/bin/cnss-daemon -n -l
+   class late_start
+   user system
+   group system inet wifi
+
 # Toggle high_sensitivity according to touch_sensitivity_mode
 on property:persist.vendor.touch_sensitivity_mode=0 && property:sys.boot_completed=1
     write /sys/devices/virtual/goog_touch_interface/gti.0/screen_protector_mode_enabled 0
@@ -109,13 +115,6 @@ on override-sf-uclamp
 # it should be written by the system init.
 on property:ro.boot.hardware.sku=G82U8
     setprop audio.camerasound.force true
-
-# Route vibrator.adaptive_haptics.enabled to persist
-on property:vibrator.adaptive_haptics.enabled=0
-    setprop persist.vendor.vibrator.hal.context.enable false
-
-on property:vibrator.adaptive_haptics.enabled=1
-    setprop persist.vendor.vibrator.hal.context.enable true
 
 # Haptics
 on property:vendor.all.modules.ready=1
