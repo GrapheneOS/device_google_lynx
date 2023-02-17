@@ -269,4 +269,8 @@ endif
 
 # SKU specific RROs
 PRODUCT_PACKAGES += \
-    SettingsOverlayG82U8
+    SettingsOverlayG82U8 \
+    SettingsOverlayG0DZQ \
+    SettingsOverlayGHL1X \
+    SettingsOverlayGWKK3
+
