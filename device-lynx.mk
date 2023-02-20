@@ -28,7 +28,7 @@ DEVICE_PACKAGE_OVERLAYS += device/google/lynx/lynx/overlay
 
 include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
-include device/google/lynx/vibrator/cs40l26/device.mk
+include hardware/google/pixel/vibrator/cs40l26/device.mk
 
 # go/lyric-soong-variables
 $(call soong_config_set,lyric,camera_hardware,lynx)
@@ -154,12 +154,7 @@ endif
 PRODUCT_VENDOR_PROPERTIES += \
 	ro.vendor.vibrator.hal.supported_primitives=243 \
 	ro.vendor.vibrator.hal.f0.comp.enabled=1 \
-	ro.vendor.vibrator.hal.redc.comp.enabled=0 \
-	persist.vendor.vibrator.hal.context.enable=false \
-	persist.vendor.vibrator.hal.context.scale=40 \
-	persist.vendor.vibrator.hal.context.fade=true \
-	persist.vendor.vibrator.hal.context.cooldowntime=1600 \
-	persist.vendor.vibrator.hal.context.settlingtime=5000
+	ro.vendor.vibrator.hal.redc.comp.enabled=0
 
 # Trusty liboemcrypto.so
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
