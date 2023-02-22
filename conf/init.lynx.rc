@@ -38,10 +38,6 @@ on property:vendor.mfgapi.touchpanel.permission=1
     chmod 0600 /sys/devices/virtual/sec/tsp/cmd
     chown system system /sys/devices/virtual/sec/tsp/cmd
 
-# Fingerprint
-on post-fs-data
-    exec_background - system shell -- /vendor/bin/trusty_apploader /vendor/firmware/g7.app
-
 # SecureElement eSE2 cts mode
 on property:persist.vendor.se.ese2.mode=ctsmode
     write /sys/class/st33spi/st33spi/st33spi_state 33
