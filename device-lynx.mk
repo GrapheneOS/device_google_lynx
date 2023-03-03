@@ -245,6 +245,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.exif_reveal_make_model=true
 
+# Enable front camera always binning for 720P or smaller resolution
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.front_720P_always_binning=true
+
 # Use GmsCorePrebuilt y2022w28
 USE_GMSCORE_PREBUILT_Y2022W28 := true
 
