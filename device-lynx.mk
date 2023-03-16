@@ -229,7 +229,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.vendor.camera.extended_launch_boost=1 \
 	persist.vendor.camera.optimized_tnr_freq=1 \
-	persist.vendor.camera.raise_buf_allocation_priority=1
+	persist.vendor.camera.raise_buf_allocation_priority=1 \
+	persist.vendor.camera.start_cpu_throttling_at_moderate_thermal=1
 
 # Enable camera 1080P 60FPS binning mode
 PRODUCT_VENDOR_PROPERTIES += \
