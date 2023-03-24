@@ -13,9 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 TARGET_BOARD_INFO_FILE := device/google/lynx/board-info.txt
 TARGET_BOOTLOADER_BOARD_NAME := lynx
-TARGET_SCREEN_DENSITY := 420
+
+ifdef PHONE_CAR_BOARD_PRODUCT
+        include vendor/auto/embedded/products/$(PHONE_CAR_BOARD_PRODUCT)/BoardConfig.mk
+else
+        TARGET_SCREEN_DENSITY := 420
+endif
+
 BOARD_USES_GENERIC_AUDIO := true
 USES_DEVICE_GOOGLE_LYNX := true
 
