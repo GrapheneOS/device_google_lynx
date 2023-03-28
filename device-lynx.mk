@@ -172,6 +172,9 @@ else
                 device/google/lynx/location/scd_user.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/scd.conf
 endif
 
+# Wifi HAL
+PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
+
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gms.dck.eligible_wcc=2
