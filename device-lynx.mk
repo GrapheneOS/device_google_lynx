@@ -30,6 +30,7 @@ include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
 include hardware/google/pixel/vibrator/cs40l26/device.mk
 include device/google/gs-common/touch/gti/gti.mk
+include device/google/gs-common/wlan/dump.mk
 
 # go/lyric-soong-variables
 $(call soong_config_set,lyric,camera_hardware,lynx)
