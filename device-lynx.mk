@@ -279,3 +279,8 @@ PRODUCT_PACKAGES += \
     SettingsOverlayG0DZQ \
     SettingsOverlayGHL1X \
     SettingsOverlayGWKK3
+
+# Setup Wizard device-specific settings
+PRODUCT_PRODUCT_PROPERTIES += \
+    setupwizard.feature.enable_quick_start_flow_for_debug=true \
+
