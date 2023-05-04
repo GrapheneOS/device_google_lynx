@@ -866,5 +866,45 @@
             "PowerSampleDelay":14000,
             "PowerSampleCount":5
         }
-    ]
+    ],
+    "Stats": {
+        "Sensors": {
+            "RecordWithDefaultThreshold": ["VIRTUAL-SKIN", "VIRTUAL-SKIN-CHARGE-WLC"],
+            "RecordWithThreshold": [
+                {
+                    "Name": "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-1",
+                    "Thresholds": [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+                },
+                {
+                    "Name": "VIRTUAL-QUT-SKIN2-USB-USB2-2",
+                    "Thresholds": [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+                },
+                {
+                    "Name": "VIRTUAL-QUT-SKIN2-USB-GNSS-3",
+                    "Thresholds": [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+                },
+                {
+                    "Name": "VIRTUAL-NEU-QUT-SKIN1-SKIN2-USB-USB2-GNSS-4",
+                    "Thresholds": [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+                },
+                {
+                    "Name": "VIRTUAL-SKIN",
+                    "Thresholds": [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+                },
+                {
+                    "Name": "VIRTUAL-SKIN-CHARGE-WLC",
+                    "Thresholds": [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+                },
+                {
+                    "Name": "VIRTUAL-USB-THROTTLING",
+                    "Thresholds": [2.0]
+                }
+            ]
+        },
+        "CoolingDevices": {
+            "RecordVotePerSensor": {
+                "DefaultThresholdEnableAll": true
+            }
+        }
+    }
 }
