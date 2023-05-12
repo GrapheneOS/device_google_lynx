@@ -18,9 +18,8 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter lynx,$(TARGET_DEVICE)),)
   $(call add-radio-file,bootloader.img)
+  $(call add-radio-file,radio.img)
 endif
-
-$(call add-radio-file-checked,radio.img,version-baseband)
 
 ifneq ($(filter lynx,$(TARGET_DEVICE)),)
 include $(CLEAR_VARS)
