@@ -283,3 +283,7 @@ PRODUCT_PACKAGES += \
     SettingsOverlayG0DZQ \
     SettingsOverlayGHL1X \
     SettingsOverlayGWKK3
+
+# Enable DeviceAsWebcam support
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.usb.uvc.enabled=true
