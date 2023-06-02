@@ -185,7 +185,8 @@ PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.gms.dck.eligible_wcc=2
+    ro.gms.dck.eligible_wcc=2 \
+    ro.gms.dck.se_capability=1
 
 # WIFI COEX
 PRODUCT_COPY_FILES += \
