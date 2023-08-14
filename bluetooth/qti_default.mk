@@ -24,10 +24,15 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Bluetooth LE Audio
 PRODUCT_PRODUCT_PROPERTIES += \
 	ro.bluetooth.leaudio_switcher.supported=true \
-	ro.bluetooth.leaudio_broadcast_switcher.supported=true \
 	ro.bluetooth.leaudio_offload.supported=true \
 	persist.bluetooth.leaudio_offload.disabled=false \
 	ro.vendor.audio_hal.ble_use_stream_id=true \
+	bluetooth.profile.bap.unicast.client.enabled?=true \
+	bluetooth.profile.csip.set_coordinator.enabled?=true \
+	bluetooth.profile.hap.client.enabled?=true \
+	bluetooth.profile.mcp.server.enabled?=true \
+	bluetooth.profile.ccp.server.enabled?=true \
+	bluetooth.profile.vcp.controller.enabled?=true \
 
 # Bluetooth LE Audio CIS handover to SCO
 # Set the property only if the controller doesn't support CIS and SCO
@@ -42,6 +47,7 @@ PRODUCT_COPY_FILES += \
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
+DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/lynx/bluetooth/device_framework_matrix_product.xml
 
 BOARD_SEPOLICY_DIRS += device/google/lynx-sepolicy/bluetooth
 
@@ -71,7 +77,9 @@ else ifeq ($(TARGET_USE_QTI_BT_SAR),true)
 endif
 PRODUCT_PACKAGES += \
 	android.hardware.bluetooth@1.0-service-qti \
-	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl
+	hardware.google.bluetooth.bt_channel_avoidance@1.0-impl \
+	android.hardware.bluetooth.prebuilt.xml \
+	android.hardware.bluetooth_le.prebuilt.xml
 
 # Bluetooth SAR Tx power caps
 PRODUCT_COPY_FILES += \

@@ -29,6 +29,8 @@ DEVICE_PACKAGE_OVERLAYS += device/google/lynx/lynx/overlay
 include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
 include hardware/google/pixel/vibrator/cs40l26/device.mk
+include device/google/gs-common/touch/gti/gti.mk
+include device/google/gs-common/wlan/dump.mk
 
 # go/lyric-soong-variables
 $(call soong_config_set,lyric,camera_hardware,lynx)
@@ -151,10 +153,16 @@ include device/google/gs101/fingerprint/udfps_factory.mk
 endif
 
 # Vibrator HAL
+ADAPTIVE_HAPTICS_FEATURE := adaptive_haptics_v1
 PRODUCT_VENDOR_PROPERTIES += \
 	ro.vendor.vibrator.hal.supported_primitives=243 \
 	ro.vendor.vibrator.hal.f0.comp.enabled=1 \
-	ro.vendor.vibrator.hal.redc.comp.enabled=0
+	ro.vendor.vibrator.hal.redc.comp.enabled=0 \
+	persist.vendor.vibrator.hal.context.enable=false \
+	persist.vendor.vibrator.hal.context.scale=40 \
+	persist.vendor.vibrator.hal.context.fade=true \
+	persist.vendor.vibrator.hal.context.cooldowntime=1600 \
+	persist.vendor.vibrator.hal.context.settlingtime=5000
 
 # Trusty liboemcrypto.so
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
@@ -172,9 +180,13 @@ else
                 device/google/lynx/location/scd_user.conf.l10:$(TARGET_COPY_OUT_VENDOR)/etc/gnss/scd.conf
 endif
 
+# Wifi HAL
+PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
+
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.gms.dck.eligible_wcc=2
+    ro.gms.dck.eligible_wcc=2 \
+    ro.gms.dck.se_capability=1
 
 # WIFI COEX
 PRODUCT_COPY_FILES += \
@@ -194,7 +206,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=6
+    ro.vendor.build.svn=11
 
 # Set support hide display cutout feature
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -245,16 +257,9 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.front_720P_always_binning=true
 
-# Use GmsCorePrebuilt y2022w28
-USE_GMSCORE_PREBUILT_Y2022W28 := true
-
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
-
-# Enable adpf cpu hint session for SurfaceFlinger
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    debug.sf.enable_adpf_cpu_hint=true
 
 # The default value of this variable is false and should only be set to true when
 # the device allows users to enable the seamless transfer feature.
@@ -277,4 +282,3 @@ PRODUCT_PACKAGES += \
     SettingsOverlayG0DZQ \
     SettingsOverlayGHL1X \
     SettingsOverlayGWKK3
-

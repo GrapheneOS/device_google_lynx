@@ -18,14 +18,13 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter lynx,$(TARGET_DEVICE)),)
   $(call add-radio-file,bootloader.img)
+  $(call add-radio-file,radio.img)
 endif
-
-$(call add-radio-file-checked,radio.img,version-baseband)
 
 ifneq ($(filter lynx,$(TARGET_DEVICE)),)
 include $(CLEAR_VARS)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE := QualifiedNetworksService
+LOCAL_MODULE := PixelQualifiedNetworksService
 LOCAL_MODULE_TAGS := optional
 LOCAL_BUILT_MODULE_STEM := package.apk
 LOCAL_SYSTEM_EXT_MODULE := true
