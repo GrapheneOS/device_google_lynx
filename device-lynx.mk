@@ -226,10 +226,6 @@ PRODUCT_PACKAGES += \
     NoCutoutOverlay \
     AvoidAppsInCutoutOverlay
 
-# Android DeviceAsWebcam specific overlay
-PRODUCT_PACKAGES += \
-    DeviceAsWebcamLynx
-
 # MIPI Coex Configs
 PRODUCT_COPY_FILES += \
     device/google/lynx/lynx/radio/lynx_display_primary_mipi_coex_table.csv:$(TARGET_COPY_OUT_VENDOR)/etc/modem/display_primary_mipi_coex_table.csv
