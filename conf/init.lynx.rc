@@ -16,7 +16,7 @@ on early-boot
     wait_for_prop vendor.common.modules.ready 1
     start insmod_sh_lynx
 
-service insmod_sh_lynx /vendor/bin/init.insmod.sh /vendor/etc/init.insmod.lynx.cfg
+service insmod_sh_lynx /vendor/bin/insmod.sh /vendor/etc/init.insmod.lynx.cfg
     class main
     user root
     group root system
@@ -37,11 +37,6 @@ on property:vendor.device.modules.ready=1
 on property:vendor.mfgapi.touchpanel.permission=1
     chmod 0600 /sys/devices/virtual/sec/tsp/cmd
     chown system system /sys/devices/virtual/sec/tsp/cmd
-
-# Fingerprint
-on post-fs-data
-    chown system system /dev/goodix_fp
-    exec_background - system shell -- /vendor/bin/trusty_apploader /vendor/firmware/g7.app
 
 # SecureElement eSE2 cts mode
 on property:persist.vendor.se.ese2.mode=ctsmode
@@ -88,31 +83,29 @@ on property:persist.vendor.touch_sensitivity_mode=0 && property:sys.boot_complet
 on property:persist.vendor.touch_sensitivity_mode=1 && property:sys.boot_completed=1
     write /sys/devices/virtual/goog_touch_interface/gti.0/screen_protector_mode_enabled 1
 
-# Touch
-on property:vendor.device.modules.ready=1
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/force_active
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/fw_ver
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/ms_base
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/ms_diff
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/ms_raw
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/self_test
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/ss_base
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/ss_diff
-    chown system system /sys/devices/virtual/goog_touch_interface/gti.0/ss_raw
-
-# Override SF and RE uclamps to 0 on boot after being set elsewhere, for adpf cpu hints
-on property:sys.boot_completed=1
-    trigger override-sf-uclamp
-
-on property:vendor.powerhal.init=*
-    write /dev/cpuset/background/cpus ${persist.device_config.vendor_system_native.background_cpuset:-0-3}
-
-on override-sf-uclamp
-    write /proc/vendor_sched/rt_uclamp_min 0
-    write /proc/vendor_sched/sf_uclamp_min 0
-
 # For Japan sku, always enforce camera shutter sound
 # Since this property is read by the audio server in system service,
 # it should be written by the system init.
 on property:ro.boot.hardware.sku=G82U8
     setprop audio.camerasound.force true
+
+# Haptics
+on property:vendor.all.modules.ready=1
+    mkdir /mnt/vendor/persist/haptics 0770 system system
+    chmod 770 /mnt/vendor/persist/haptics
+    chmod 440 /mnt/vendor/persist/haptics/cs40l26.cal
+    chown system system /mnt/vendor/persist/haptics
+    chown system system /mnt/vendor/persist/haptics/cs40l26.cal
+
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/calibration/f0_stored
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/calibration/q_stored
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/calibration/redc_stored
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/vibe_state
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/num_waves
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/f0_offset
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/owt_free_space
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/f0_comp_enable
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/redc_comp_enable
+    chown system system /sys/bus/i2c/devices/i2c-cs40l26a/default/delay_before_stop_playback_us
+
+    enable vendor.vibrator.cs40l26

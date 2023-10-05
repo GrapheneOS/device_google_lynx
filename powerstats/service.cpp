@@ -27,6 +27,7 @@
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 #include <log/log.h>
+#include <sys/stat.h>
 
 using aidl::android::hardware::power::stats::DevfreqStateResidencyDataProvider;
 using aidl::android::hardware::power::stats::DisplayStateResidencyDataProvider;
@@ -89,6 +90,8 @@ void addGPUGs202(std::shared_ptr<PowerStats> p) {
 }
 
 int main() {
+    struct stat buffer;
+
     LOG(INFO) << "Pixel PowerStats HAL AIDL Service is starting.";
 
     // single thread
@@ -107,7 +110,21 @@ int main() {
     addWlan(p);
     addTPU(p);
     addUfs(p);
-    addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-4/i2c-st21nfc/power_stats");
+    if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-2/i2c-st21nfc/power_stats", &buffer)) {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-2/i2c-st21nfc/power_stats");
+    } else if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-3/i2c-st21nfc/power_stats", &buffer)) {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-3/i2c-st21nfc/power_stats");
+    } else if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-4/i2c-st21nfc/power_stats", &buffer)) {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-4/i2c-st21nfc/power_stats");
+    } else if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-5/i2c-st21nfc/power_stats", &buffer)) {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-5/i2c-st21nfc/power_stats");
+    } else if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-6/i2c-st21nfc/power_stats", &buffer)) {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-6/i2c-st21nfc/power_stats");
+    } else if (!stat("/sys/devices/platform/10970000.hsi2c/i2c-7/i2c-st21nfc/power_stats", &buffer)) {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-7/i2c-st21nfc/power_stats");
+    } else {
+        addNFC(p, "/sys/devices/platform/10970000.hsi2c/i2c-8/i2c-st21nfc/power_stats");
+    }
     addPowerDomains(p);
     addDevfreq(p);
     addGPUGs202(p);

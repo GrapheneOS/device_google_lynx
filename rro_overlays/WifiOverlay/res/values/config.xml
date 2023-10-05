@@ -126,10 +126,29 @@
     <!-- Enable the default coex channel avoidance algorithm and disable the functionality of
          WifiManager#setCoexUnsafeChannels. -->
     <bool translatable="false" name="config_wifiDefaultCoexAlgorithmEnabled">true</bool>
+    <!-- If the default coex channel avoidance algorithm is enabled, then avoid channels that
+         conflict with GPS L1. -->
+    <bool translatable="false" name="config_wifiCoexForGpsL1">true</bool>
+    <!-- The distance in KHz between Wi-Fi-based interference and GPS L1 that is considered unsafe. -->
+    <integer translatable="false" name="config_wifiCoexGpsL1ThresholdKhz">10000</integer>
 
     <!-- Whether to use the explicit vendor HAL API: IWifiStaIface.setRoamingState for disabling fw roaming. -->
     <bool translatable="false" name="config_wifiUseHalApiToDisableFwRoaming">true</bool>
 
     <!-- Indicate the driver doesn't support NL80211 Reg changed event -->
     <bool translatable="false" name="config_wifiDriverSupportedNl80211RegChangedEvent">true</bool>
+
+    <!-- Boolean indicating whether DTIM multiplier configuration is enabled. DTIM multiplier value
+        is when the system is in the suspended mode -->
+    <bool translatable="false" name="config_wifiDtimMultiplierConfigEnabled">true</bool>
+
+    <!-- Enable the feature of adjusting link layer stats polling interval based on
+    device mobility state and client mode RSSI monitoring. -->
+    <bool translatable="false" name="config_wifiAdjustPollRssiIntervalEnabled">true</bool>
+
+    <!-- Boolean indicating whether the framework updates country from scan results when there is
+         no telephony country code. This is applied to all generic cases and might require the
+         regulatory approval (for example, FCC pre-approval is required according to "594280 D01
+         Software Configuration Control v02r01").-->
+    <bool translatable="false" name ="config_wifiUpdateCountryCodeFromScanResultGeneric">true</bool>
 </resources>

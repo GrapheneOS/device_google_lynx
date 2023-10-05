@@ -32,9 +32,6 @@
     <scenario encode="OneChanMono_24_2" decode="invalid"/>
     <scenario encode="TwoChanStereo_24_2" decode="invalid"/>
     <scenario encode="OneChanStereo_24_2" decode="invalid"/>
-    <scenario encode="OneChanMono_32_2" decode="invalid"/>
-    <scenario encode="TwoChanStereo_32_2" decode="invalid"/>
-    <scenario encode="OneChanStereo_32_2" decode="invalid"/>
     <scenario encode="OneChanMono_48_4" decode="invalid"/>
     <scenario encode="TwoChanStereo_48_4" decode="invalid"/>
     <scenario encode="OneChanStereo_48_4" decode="invalid"/>
@@ -47,10 +44,11 @@
     <scenario encode="OneChanStereo_16_2" decode="OneChanMono_16_2"/>
     <scenario encode="TwoChanStereo_16_2" decode="OneChanMono_16_2"/>
     <scenario encode="OneChanMono_16_2" decode="OneChanMono_16_2"/>
-    <scenario encode="OneChanStereo_32_2" decode="OneChanStereo_32_2"/>
-    <scenario encode="OneChanStereo_32_2" decode="OneChanMono_32_2"/>
     <scenario encode="TwoChanStereo_32_2" decode="OneChanMono_32_2"/>
     <scenario encode="OneChanMono_32_2" decode="OneChanMono_32_2"/>
+    <!-- broadcast -->
+    <scenario encode="invalid" decode="invalid" broadcast="BcastStereo_24_2"/>
+    <scenario encode="invalid" decode="invalid" broadcast="BcastStereo_16_2"/>
   </scenarioList>
   <configurationList>
     <configuration name="OneChanMono_16_1" codecConfiguration="LC3_16k_1" strategyConfiguration="MONO_ONE_CIS_PER_DEVICE"/>
@@ -64,10 +62,11 @@
     <configuration name="OneChanStereo_24_2" codecConfiguration="LC3_24k_2" strategyConfiguration="STEREO_ONE_CIS_PER_DEVICE"/>
     <configuration name="OneChanMono_32_2" codecConfiguration="LC3_32k_2" strategyConfiguration="MONO_ONE_CIS_PER_DEVICE"/>
     <configuration name="TwoChanStereo_32_2" codecConfiguration="LC3_32k_2" strategyConfiguration="STEREO_TWO_CISES_PER_DEVICE"/>
-    <configuration name="OneChanStereo_32_2" codecConfiguration="LC3_32k_2" strategyConfiguration="STEREO_ONE_CIS_PER_DEVICE"/>
     <configuration name="OneChanMono_48_4" codecConfiguration="LC3_48k_4" strategyConfiguration="MONO_ONE_CIS_PER_DEVICE"/>
     <configuration name="TwoChanStereo_48_4" codecConfiguration="LC3_48k_4" strategyConfiguration="STEREO_TWO_CISES_PER_DEVICE"/>
     <configuration name="OneChanStereo_48_4" codecConfiguration="LC3_48k_4" strategyConfiguration="STEREO_ONE_CIS_PER_DEVICE"/>
+    <configuration name="BcastStereo_24_2" codecConfiguration="LC3_24k_2" strategyConfiguration="BROADCAST_STEREO"/>
+    <configuration name="BcastStereo_16_2" codecConfiguration="LC3_16k_2" strategyConfiguration="BROADCAST_STEREO"/>
   </configurationList>
   <codecConfigurationList>
     <codecConfiguration name="LC3_16k_1" codec="LC3" samplingFrequency="16000" frameDurationUs="7500" octetsPerCodecFrame="30"/>
@@ -80,5 +79,6 @@
     <strategyConfiguration name="STEREO_ONE_CIS_PER_DEVICE" audioLocation="STEREO" connectedDevice="2" channelCount="1"/>
     <strategyConfiguration name="STEREO_TWO_CISES_PER_DEVICE" audioLocation="STEREO" connectedDevice="1" channelCount="2"/>
     <strategyConfiguration name="MONO_ONE_CIS_PER_DEVICE" audioLocation="MONO" connectedDevice="1" channelCount="1"/>
+    <strategyConfiguration name="BROADCAST_STEREO" audioLocation="STEREO" connectedDevice="0" channelCount="2"/>
   </strategyConfigurationList>
 </leAudioOffloadSetting>
