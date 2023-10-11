@@ -52,6 +52,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
 	device/google/lynx/bluetooth/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
 
+# LE Audio use classic connection by default
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.bluetooth.leaudio.le_audio_connection_by_default=false
+
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
