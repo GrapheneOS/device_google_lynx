@@ -146,6 +146,11 @@ include device/google/lynx/bluetooth/qti_default.mk
 
 # Fingerprint HAL
 GOODIX_CONFIG_BUILD_VERSION := g7_trusty
+ifneq (,$(filter AP1%,$(RELEASE_PLATFORM_VERSION)))
+PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/firmware/fingerprint/24Q1
+else
+PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/firmware/fingerprint/trunk
+endif
 $(call inherit-product-if-exists, vendor/goodix/udfps/configuration/udfps_common.mk)
 ifeq ($(filter factory%, $(TARGET_PRODUCT)),)
 $(call inherit-product-if-exists, vendor/goodix/udfps/configuration/udfps_shipping.mk)
@@ -167,6 +172,11 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Trusty liboemcrypto.so
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
+ifneq (,$(filter AP1%,$(RELEASE_PLATFORM_VERSION)))
+PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/trusty/24Q1
+else
+PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/trusty/trunk
+endif
 
 # GPS xml
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
