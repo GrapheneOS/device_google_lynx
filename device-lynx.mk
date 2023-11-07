@@ -80,10 +80,9 @@ PRODUCT_COPY_FILES += \
     device/google/lynx/nfc/libnfc-nci-lynx.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf
 
 PRODUCT_PACKAGES += \
-	com.android.nfcservices \
+	NfcNci \
 	Tag \
-	android.hardware.nfc-service.st \
-	NfcOverlayLynx
+	android.hardware.nfc-service.st
 
 # SecureElement
 PRODUCT_PACKAGES += \
