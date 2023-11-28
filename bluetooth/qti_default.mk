@@ -44,6 +44,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.leaudio.dual_bidirection_swb.supported=false
 
+# LE Audio Lunch Config for Phase 1 (LE audio toggle hidden by default)
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.bluetooth.leaudio.toggle_visible=false
+
 # LE Auido Offload Capabilities setting
 PRODUCT_COPY_FILES += \
 	device/google/lynx/bluetooth/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
