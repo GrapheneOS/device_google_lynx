@@ -56,6 +56,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.bluetooth.leaudio.le_audio_connection_by_default=false
 
+# Bluetotoh Auto On feature
+PRODUCT_PRODUCT_PROPERTIES +=
+	bluetooth.server.automatic_turn_on=true
+
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/bluetooth/manifest_bluetooth.xml
