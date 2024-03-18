@@ -14,16 +14,17 @@
 # limitations under the License.
 #
 
-TARGET_KERNEL_DIR ?= device/google/lynx-kernel
-TARGET_BOARD_KERNEL_HEADERS := device/google/lynx-kernel/kernel-headers
-
 ifdef RELEASE_GOOGLE_LYNX_KERNEL_VERSION
 TARGET_LINUX_KERNEL_VERSION := $(RELEASE_GOOGLE_LYNX_KERNEL_VERSION)
 endif
 
 ifdef RELEASE_GOOGLE_LYNX_KERNEL_DIR
-TARGET_KERNEL_DIR := $(RELEASE_GOOGLE_LYNX_KERNEL_DIR)
-TARGET_BOARD_KERNEL_HEADERS := $(RELEASE_GOOGLE_LYNX_KERNEL_DIR)/kernel-headers
+# Keeps flexibility for kasan and ufs builds
+TARGET_KERNEL_DIR ?= $(RELEASE_GOOGLE_LYNX_KERNEL_DIR)
+TARGET_BOARD_KERNEL_HEADERS ?= $(RELEASE_GOOGLE_LYNX_KERNEL_DIR)/kernel-headers
+else
+TARGET_KERNEL_DIR ?= device/google/lynx-kernel
+TARGET_BOARD_KERNEL_HEADERS ?= device/google/lynx-kernel/kernel-headers
 endif
 
 $(call inherit-product-if-exists, vendor/google_devices/lynx/prebuilts/device-vendor-lynx.mk)
