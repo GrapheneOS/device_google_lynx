@@ -211,7 +211,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=41
+    ro.vendor.build.svn=43
 
 # Set support hide display cutout feature
 PRODUCT_PRODUCT_PROPERTIES += \

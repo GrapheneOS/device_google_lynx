@@ -58,7 +58,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Bluetotoh Auto On feature
 PRODUCT_PRODUCT_PROPERTIES += \
-	bluetooth.server.automatic_turn_on=false
+	bluetooth.server.automatic_turn_on=true
 
 # Bluetooth HAL and Pixel extension
 DEVICE_MANIFEST_FILE += \
