@@ -18,9 +18,9 @@ TARGET_BOARD_INFO_FILE := device/google/lynx/board-info.txt
 TARGET_BOOTLOADER_BOARD_NAME := lynx
 
 RELEASE_GOOGLE_PRODUCT_RADIO_DIR := $(RELEASE_GOOGLE_LYNX_RADIO_DIR)
-RELEASE_GOOGLE_BOOTLOADER_LYNX_DIR ?= trunk # Keep this for pdk TODO: b/327119000
+RELEASE_GOOGLE_BOOTLOADER_LYNX_DIR ?= pdk# Keep this for pdk TODO: b/327119000
 RELEASE_GOOGLE_PRODUCT_BOOTLOADER_DIR := bootloader/$(RELEASE_GOOGLE_BOOTLOADER_LYNX_DIR)
-$(call soong_config_set,bootloader,prebuilt_dir,$(RELEASE_GOOGLE_BOOTLOADER_LYNX_DIR))
+$(call soong_config_set,lynx_bootloader,prebuilt_dir,$(RELEASE_GOOGLE_BOOTLOADER_LYNX_DIR))
 
 ifdef PHONE_CAR_BOARD_PRODUCT
         include vendor/auto/embedded/products/$(PHONE_CAR_BOARD_PRODUCT)/BoardConfig.mk
