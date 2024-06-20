@@ -160,8 +160,8 @@ endif
 # Vibrator HAL
 $(call soong_config_set,haptics,kernel_ver,v$(subst .,_,$(TARGET_LINUX_KERNEL_VERSION)))
 ADAPTIVE_HAPTICS_FEATURE := adaptive_haptics_v1
+ACTUATOR_MODEL := legacy_zlra_actuator
 PRODUCT_VENDOR_PROPERTIES += \
-	ro.vendor.vibrator.hal.supported_primitives=243 \
 	ro.vendor.vibrator.hal.f0.comp.enabled=1 \
 	ro.vendor.vibrator.hal.redc.comp.enabled=0 \
 	persist.vendor.vibrator.hal.context.enable=false \
