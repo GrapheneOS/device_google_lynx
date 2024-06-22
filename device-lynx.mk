@@ -149,7 +149,11 @@ include device/google/lynx/bluetooth/qti_default.mk
 # 	ro.hardware.gatekeeper=software
 
 # Fingerprint HAL
+ifneq (,$(filter AP4%,$(RELEASE_PLATFORM_VERSION)))
+GOODIX_CONFIG_BUILD_VERSION := g7_trusty_next
+else
 GOODIX_CONFIG_BUILD_VERSION := g7_trusty
+endif
 $(call inherit-product-if-exists, vendor/goodix/udfps/configuration/udfps_common.mk)
 ifeq ($(filter factory%, $(TARGET_PRODUCT)),)
 $(call inherit-product-if-exists, vendor/goodix/udfps/configuration/udfps_shipping.mk)
