@@ -23,38 +23,13 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Bluetooth LE Audio
 PRODUCT_PRODUCT_PROPERTIES += \
-	ro.bluetooth.leaudio_switcher.supported=true \
-	ro.bluetooth.leaudio_offload.supported=true \
-	persist.bluetooth.leaudio_offload.disabled=false \
-	ro.vendor.audio_hal.ble_use_stream_id=true \
-	bluetooth.profile.bap.unicast.client.enabled?=true \
-	bluetooth.profile.csip.set_coordinator.enabled?=true \
-	bluetooth.profile.hap.client.enabled?=true \
-	bluetooth.profile.mcp.server.enabled?=true \
-	bluetooth.profile.ccp.server.enabled?=true \
-	bluetooth.profile.vcp.controller.enabled?=true \
-
-# Bluetooth LE Audio CIS handover to SCO
-# Set the property only if the controller doesn't support CIS and SCO
-# simultaneously. More details in b/242908683.
-PRODUCT_PRODUCT_PROPERTIES += \
-	persist.bluetooth.leaudio.notify.idle.during.call=true
-
-# Not support LE Audio dual mic SWB call based on the current launch strategy
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.leaudio.dual_bidirection_swb.supported=false
-
-# LE Audio Lunch Config for Phase 1 (LE audio toggle hidden by default)
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.bluetooth.leaudio.toggle_visible=false
-
-# LE Auido Offload Capabilities setting
-PRODUCT_COPY_FILES += \
-	device/google/lynx/bluetooth/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
-
-# LE Audio use classic connection by default
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.bluetooth.leaudio.le_audio_connection_by_default=false
+	ro.bluetooth.leaudio_switcher.supported=false \
+	bluetooth.profile.bap.unicast.client.enabled?=false \
+	bluetooth.profile.csip.set_coordinator.enabled?=false \
+	bluetooth.profile.hap.client.enabled?=false \
+	bluetooth.profile.mcp.server.enabled?=false \
+	bluetooth.profile.ccp.server.enabled?=false \
+	bluetooth.profile.vcp.controller.enabled?=false \
 
 # Bluetotoh Auto On feature
 PRODUCT_PRODUCT_PROPERTIES += \

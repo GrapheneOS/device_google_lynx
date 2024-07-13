@@ -223,8 +223,15 @@ PRODUCT_VENDOR_PROPERTIES += \
 	vendor.zram.size=3g
 
 # Increment the SVN for any official public releases
+ifdef RELEASE_SVN_LYNX
+TARGET_SVN ?= $(RELEASE_SVN_LYNX)
+else
+# Set this for older releases that don't use build flag
+TARGET_SVN ?= 44
+endif
+
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=44
+    ro.vendor.build.svn=$(TARGET_SVN)
 
 # Set support hide display cutout feature
 PRODUCT_PRODUCT_PROPERTIES += \
