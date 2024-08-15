@@ -231,7 +231,7 @@ ifdef RELEASE_SVN_LYNX
 TARGET_SVN ?= $(RELEASE_SVN_LYNX)
 else
 # Set this for older releases that don't use build flag
-TARGET_SVN ?= 45
+TARGET_SVN ?= 46
 endif
 
 PRODUCT_VENDOR_PROPERTIES += \
