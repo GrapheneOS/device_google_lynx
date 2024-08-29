@@ -57,6 +57,7 @@
        AttributionAppPkgName="com.google.android.carrierlocation"
 
        AssertEnabled="true"
+       ExitOnComFailure="true"
        CpLppeCancelDbhOnAgnssProvideLoc="true"
        CpLppeUseAgnssLocForEmptyDbh="true"
        CpLppHighAccuracyShapeMode="1"
@@ -96,6 +97,8 @@
   />
 
   <gll_features
+       EnableQzsAutoSwitch="false"
+       EnableGloAutoSwitch="false"
        EnableNicAutoSwitch="true"
   />
 
