@@ -342,3 +342,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Bluetooth device id
 PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.device_id.product_id=20491
+
+# ETM
+ifneq (,$(RELEASE_ETM_IN_USERDEBUG_ENG))
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+$(call inherit-product-if-exists, device/google/common/etm/device-userdebug-modules.mk)
+endif
+endif
