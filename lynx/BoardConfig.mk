@@ -40,6 +40,7 @@ BOARD_KERNEL_CMDLINE += exynos_drm.load_sequential=1
 
 include device/google/gs201/BoardConfig-common.mk
 -include vendor/google_devices/gs201/prebuilts/BoardConfigVendor.mk
+include device/google/gs-common/check_current_prebuilt/check_current_prebuilt.mk
 -include vendor/google_devices/lynx/proprietary/BoardConfigVendor.mk
 include device/google/lynx-sepolicy/lynx-sepolicy.mk
 include device/google/gs201/wifi/qcom/BoardConfig-wifi.mk
