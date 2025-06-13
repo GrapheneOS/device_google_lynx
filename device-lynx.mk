@@ -169,47 +169,12 @@ PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
 PRODUCT_PACKAGES += \
 	WifiOverlay2023Mid
 
-# Increment the SVN for any official public releases
-ifdef RELEASE_SVN_LYNX
-TARGET_SVN ?= $(RELEASE_SVN_LYNX)
-else
-# Set this for older releases that don't use build flag
-TARGET_SVN ?= 46
-endif
-
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=$(TARGET_SVN)
-
-# Set device family property for SMR
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.device_family=P10C10L10
-
 # Set build properties for SMR builds
 ifeq ($(RELEASE_IS_SMR), true)
     ifneq (,$(RELEASE_BASE_OS_LYNX))
         PRODUCT_BASE_OS := $(RELEASE_BASE_OS_LYNX)
     endif
 endif
-
-# Set build properties for EMR builds
-ifeq ($(RELEASE_IS_EMR), true)
-    ifneq (,$(RELEASE_BASE_OS_LYNX))
-        PRODUCT_PROPERTY_OVERRIDES += \
-        ro.build.version.emergency_base_os=$(RELEASE_BASE_OS_LYNX)
-    endif
-endif
-# Set support hide display cutout feature
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.support_hide_display_cutout=true
-
-# Set support One-handed mode
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.support_one_handed_mode=true
-
-# Fingerprint als feed forward
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.udfps.als_feed_forward_supported=true \
-    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
 
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
