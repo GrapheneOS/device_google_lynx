@@ -165,10 +165,6 @@ PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
 PRODUCT_PACKAGES += \
 	WifiOverlay2023Mid
 
-# Wifi Aware Interface
-PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.aware.interface=wifi-aware0
-
 # Set zram size
 PRODUCT_VENDOR_PROPERTIES += \
 	vendor.zram.size=3g
