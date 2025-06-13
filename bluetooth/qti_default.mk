@@ -37,20 +37,3 @@ TARGET_DROP_BYTES_BEFORE_SSR_DUMP = true
 PRODUCT_PACKAGES += \
 	android.hardware.bluetooth.prebuilt.xml \
 	android.hardware.bluetooth_le.prebuilt.xml
-
-# Bluetooth (Vendor) SoC, BDA in device tree, and WiPower
-PRODUCT_PROPERTY_OVERRIDES += \
-	vendor.qcom.bluetooth.soc=hastings \
-	ro.vendor.bt.bdaddr_path=/proc/device-tree/chosen/config/bt_addr \
-	ro.vendor.bluetooth.emb_wp_mode=false \
-	ro.vendor.bluetooth.wipower=false
-
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.vendor.service.bdroid.soclog=true \
-	persist.vendor.service.bdroid.fwsnoop=true
-else
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.vendor.service.bdroid.soclog=false \
-	persist.vendor.service.bdroid.fwsnoop=false
-endif
