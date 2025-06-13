@@ -25,7 +25,3 @@ PRODUCT_DEVICE := lynx
 PRODUCT_MODEL := Factory build on Lynx
 PRODUCT_BRAND := Android
 PRODUCT_MANUFACTURER := Google
-
-# default BDADDR for EVB only
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.bluetooth.evb_bdaddr="22:22:22:33:44:55"
