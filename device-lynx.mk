@@ -58,6 +58,12 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
 	frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.ese.xml
 
+# RELEASE_PACKAGE_NFC_STACK is a flag which is eitehr "com.android.nfcservices" or "NfcNci", both of
+# which should be built as part of AOSP.
+# Found "module_name": "Tag" in state file, which corresponds to packages/apps/Tag. Also found "Tag"
+# in build/make/target/product/generic.
+# Found hardware/st/nfc/aidl/Android.bp, which is named "android.hardware.nfc-service.st".
+# Found rro_overlays/NfcOverlay/Android.bp, which corresponds to NfcOverlayLynx.
 PRODUCT_PACKAGES += \
 	$(RELEASE_PACKAGE_NFC_STACK) \
 	Tag \
