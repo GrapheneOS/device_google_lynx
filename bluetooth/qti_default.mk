@@ -38,11 +38,6 @@ PRODUCT_PACKAGES += \
 	android.hardware.bluetooth.prebuilt.xml \
 	android.hardware.bluetooth_le.prebuilt.xml
 
-# Bluetooth SAR test tools
-ifneq (,$(filter true, $(TARGET_USE_QTI_BT_SAR_V1_1) $(TARGET_USE_QTI_BT_SAR)))
-   PRODUCT_PACKAGES_DEBUG += bluetooth_sar_test
-endif
-
 # Bluetooth (Vendor) SoC, BDA in device tree, and WiPower
 PRODUCT_PROPERTY_OVERRIDES += \
 	vendor.qcom.bluetooth.soc=hastings \
