@@ -93,10 +93,6 @@ PRODUCT_COPY_FILES += \
 DEVICE_MANIFEST_FILE += \
 	device/google/lynx/nfc/manifest_se.xml
 
-# Power HAL config
-PRODUCT_COPY_FILES += \
-	device/google/lynx/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
-
 # PowerStats HAL
 PRODUCT_SOONG_NAMESPACES += \
     device/google/lynx/powerstats \
