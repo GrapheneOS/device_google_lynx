@@ -38,6 +38,8 @@ $(call soong_config_set,lyric,camera_hardware,lynx)
 $(call soong_config_set,lyric,tuning_product,lynx)
 $(call soong_config_set,google3a_config,target_device,lynx)
 
+# TODO: This file is modified downstream, so we can't remove it. Need to pull this file from the
+# stock 16 factory image and add it here with our changes.
 # Init files
 PRODUCT_COPY_FILES += \
 	device/google/lynx/conf/init.lynx.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.lynx.rc
