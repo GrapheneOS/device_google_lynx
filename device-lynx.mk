@@ -76,6 +76,7 @@ SHARED_MODEM_PLATFORM_VENDOR := lassen
 # Shared Modem Platform
 include device/google/gs-common/modem/modem_svc_sit/shared_modem_platform.mk
 
+# Found hardware/st/secure_element2 which contains these.
 # SecureElement
 PRODUCT_PACKAGES += \
 	android.hardware.secure_element@1.2-service-gto \
