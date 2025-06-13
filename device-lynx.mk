@@ -195,45 +195,9 @@ PRODUCT_PACKAGES += \
     NoCutoutOverlay \
     AvoidAppsInCutoutOverlay
 
-# Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.vendor.camera.extended_launch_boost=1 \
-	persist.vendor.camera.optimized_tnr_freq=1 \
-	persist.vendor.camera.raise_buf_allocation_priority=1 \
-	persist.vendor.camera.start_cpu_throttling_at_moderate_thermal=1
-
-# Enable camera 1080P 60FPS binning mode
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.1080P_60fps_binning=true
-
-# Increase thread priority for nodes stop
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.increase_thread_priority_nodes_stop=true
-
-# OIS with system imu
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.ois_with_system_imu=true
-
-# Enable camera exif model/make reporting
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.exif_reveal_make_model=true
-
-# Enable front camera always binning for 720P or smaller resolution
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.camera.front_720P_always_binning=true
-
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
-
-# The default value of this variable is false and should only be set to true when
-# the device allows users to enable the seamless transfer feature.
-PRODUCT_PRODUCT_PROPERTIES += \
-   euicc.seamless_transfer_enabled_in_non_qs=true
-
-##Audio Vendor property
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.vendor.audio.cca.enabled=false
 
 # userdebug specific
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
@@ -247,20 +211,6 @@ PRODUCT_PACKAGES += \
     SettingsOverlayG0DZQ \
     SettingsOverlayGHL1X \
     SettingsOverlayGWKK3
-
-# Enable DeviceAsWebcam support
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.usb.uvc.enabled=true
-
-# Quick Start device-specific settings
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.quick_start.oem_id=00e0 \
-    ro.quick_start.device_id=lynx
-
-# Bluetooth device id
-# Raven: 0x410B
-PRODUCT_PRODUCT_PROPERTIES += \
-    bluetooth.device_id.product_id=16651
 
 # ETM
 ifneq (,$(RELEASE_ETM_IN_USERDEBUG_ENG))
