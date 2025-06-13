@@ -131,9 +131,6 @@ $(call soong_config_set,haptics,kernel_ver,v$(subst .,_,$(TARGET_LINUX_KERNEL_VE
 ADAPTIVE_HAPTICS_FEATURE := adaptive_haptics_v1
 ACTUATOR_MODEL := legacy_zlra_actuator
 
-# Trusty liboemcrypto.so
-PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
-
 # Location
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     PRODUCT_COPY_FILES += \
