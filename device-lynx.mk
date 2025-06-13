@@ -165,10 +165,6 @@ endif
 # Wifi HAL
 PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
 
-# WIFI COEX
-PRODUCT_COPY_FILES += \
-	device/google/lynx/wifi/coex_table.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/coex_table.xml
-
 # WiFi Overlay
 PRODUCT_PACKAGES += \
 	WifiOverlay2023Mid
