@@ -50,10 +50,6 @@ PRODUCT_COPY_FILES += \
 	device/google/lynx/init.insmod.lynx.cfg:$(TARGET_COPY_OUT_VENDOR_DLKM)/etc/init.insmod.lynx.cfg
 endif
 
-# sysconfig XML from stock
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/product-sysconfig-stock.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/product-sysconfig-stock.xml
-
 #config of primary display frames to reach LHBM peak brightness
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
 
