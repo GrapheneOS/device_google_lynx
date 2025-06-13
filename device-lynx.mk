@@ -95,7 +95,6 @@ DEVICE_MANIFEST_FILE += \
 
 # PowerStats HAL
 PRODUCT_SOONG_NAMESPACES += \
-    device/google/lynx/powerstats \
     device/google/lynx
 
 # Bluetooth HAL and Pixel extension
