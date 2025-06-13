@@ -169,10 +169,6 @@ PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
 PRODUCT_PACKAGES += \
 	WifiOverlay2023Mid
 
-# Set zram size
-PRODUCT_VENDOR_PROPERTIES += \
-	vendor.zram.size=3g
-
 # Increment the SVN for any official public releases
 ifdef RELEASE_SVN_LYNX
 TARGET_SVN ?= $(RELEASE_SVN_LYNX)
