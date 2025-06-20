@@ -13,10 +13,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-AUDIO_FACTORY_TABLE_FOLDER := lynx
-
-# Mixer Path Configuration for Audio Factory
-PRODUCT_COPY_FILES += \
-    device/google/lynx/audio/$(AUDIO_FACTORY_TABLE_FOLDER)/config/mixer_paths_factory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_factory.xml
-
