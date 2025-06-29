@@ -26,8 +26,6 @@ $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/lynx/de
 $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/device-vendor.mk)
 $(call inherit-product-if-exists, vendor/google_devices/lynx/proprietary/WallpapersLynx.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/google/lynx/lynx/overlay
-
 include device/google/lynx/audio/lynx/audio-tables.mk
 include device/google/gs201/device-shipping-common.mk
 include device/google/gs-common/touch/gti/predump_gti.mk
@@ -73,12 +71,10 @@ PRODUCT_COPY_FILES += \
 # Found "module_name": "Tag" in state file, which corresponds to packages/apps/Tag. Also found "Tag"
 # in build/make/target/product/generic.
 # Found hardware/st/nfc/aidl/Android.bp, which is named "android.hardware.nfc-service.st".
-# Found rro_overlays/NfcOverlay/Android.bp, which corresponds to NfcOverlayLynx.
 PRODUCT_PACKAGES += \
 	$(RELEASE_PACKAGE_NFC_STACK) \
 	Tag \
-	android.hardware.nfc-service.st \
-	NfcOverlayLynx
+	android.hardware.nfc-service.st
 
 # Shared Modem Platform
 SHARED_MODEM_PLATFORM_VENDOR := lassen
@@ -171,10 +167,6 @@ endif
 # Wifi HAL
 PRODUCT_SOONG_NAMESPACES += hardware/qcom/wlan/wcn6740
 
-# WiFi Overlay
-PRODUCT_PACKAGES += \
-	WifiOverlay2023Mid
-
 # Increment the SVN for any official public releases
 ifdef RELEASE_SVN_LYNX
 TARGET_SVN ?= $(RELEASE_SVN_LYNX)
@@ -198,13 +190,6 @@ PRODUCT_PACKAGES += \
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
-
-# SKU specific RROs
-PRODUCT_PACKAGES += \
-    SettingsOverlayG82U8 \
-    SettingsOverlayG0DZQ \
-    SettingsOverlayGHL1X \
-    SettingsOverlayGWKK3
 
 # ETM
 ifneq (,$(RELEASE_ETM_IN_USERDEBUG_ENG))
